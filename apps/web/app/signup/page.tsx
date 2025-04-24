@@ -34,7 +34,7 @@ const Page = () => {
             },
           );
         }}
-        className=" p-1 px-5 border size-fit border-gray-100 cursor-pointer"
+        className=" p-1 px-5 border size-fit border-gray-100 cursor-pointer shadow-lg"
       >
         Signup
       </button>
