@@ -12,6 +12,16 @@ const Page = () => {
   return (
     <div className="flex h-screen justify-center items-center">
       <button
+        className="cursor-pointer"
+        onClick={async () => {
+          const { data, error } = await authClient.signIn.social({
+            provider: "google",
+          });
+        }}
+      >
+        Google
+      </button>
+      <button
         onClick={async () => {
           const { data, error } = await authClient.signIn.email(
             {

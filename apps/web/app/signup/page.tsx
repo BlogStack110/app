@@ -38,6 +38,16 @@ const Page = () => {
       >
         Signup
       </button>
+      <button
+        className="flex justify-center"
+        onClick={async () => {
+          const { data, error } = await authClient.signIn.social({
+            provider: "github",
+          });
+        }}
+      >
+        GitHub
+      </button>
     </div>
   );
 };
