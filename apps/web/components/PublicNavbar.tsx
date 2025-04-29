@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { Menu, X, User, LogOut } from "lucide-react";
 import { useState } from "react";
-import { useSession } from "../lib/auth-client";
+import { authClient, useSession } from "../lib/auth-client";
+import { signOut } from "better-auth/api";
 
 export default function PublicNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -108,13 +109,15 @@ export default function PublicNavbar() {
                     >
                       Bookmarks
                     </Link>
-                    <Link
-                      href="/user/sign-out"
-                      className="block px-4 py-2 text-sm text-red-400 hover:bg-white/10 border-t border-white/10 mt-1 pt-1 flex items-center"
-                      onClick={() => setIsProfileOpen(false)}
+                    <div
+                      className="px-4 py-2 cursor-pointer text-sm text-red-400 hover:bg-white/10 border-t border-white/10 mt-1 pt-1 flex items-center"
+                      onClick={async () => {
+                        await authClient.signOut();
+                        setIsProfileOpen(false);
+                      }}
                     >
                       <LogOut className="w-4 h-4 mr-2" /> Sign out
-                    </Link>
+                    </div>
                   </div>
                 )}
               </div>
@@ -243,13 +246,15 @@ export default function PublicNavbar() {
               >
                 Bookmarks
               </Link>
-              <Link
-                href="/user/sign-out"
-                className="block px-3 py-2 rounded-lg text-red-400 hover:bg-white/10 w-full text-sm mt-2 border-t border-white/10 pt-2 flex items-center"
-                onClick={() => setIsMenuOpen(false)}
+              <div
+                className="px-3 py-2 rounded-lg text-red-400 hover:bg-white/10 w-full text-sm mt-2 border-t border-white/10 pt-2 flex items-center"
+                onClick={async () => {
+                  await authClient.signOut();
+                  setIsMenuOpen(false);
+                }}
               >
                 <LogOut className="w-4 h-4 mr-2" /> Sign out
-              </Link>
+              </div>
             </div>
           ) : (
             <div className="flex items-center px-4 space-x-3">
