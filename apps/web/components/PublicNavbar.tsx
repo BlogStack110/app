@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Menu, X, User, LogOut } from "lucide-react";
 import { useState } from "react";
 import { authClient, useSession } from "../lib/auth-client";
-import { signOut } from "better-auth/api";
 
 export default function PublicNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
