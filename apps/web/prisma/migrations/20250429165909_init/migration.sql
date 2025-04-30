@@ -39,7 +39,7 @@ CREATE TABLE "Account" (
     "accessToken" TEXT,
     "refreshToken" TEXT,
     "refreshTokenExpireAt" TIMESTAMP(3),
-    "accessTokenExpireAt" TIMESTAMP(3),
+    "accessTokenExpiresAt" TIMESTAMP(3),
     "scope" TEXT,
     "idToken" TEXT,
     "password" TEXT,
@@ -200,9 +200,6 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Session_id_key" ON "Session"("id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Session_userId_key" ON "Session"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Account_id_key" ON "Account"("id");
