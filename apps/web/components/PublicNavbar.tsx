@@ -207,7 +207,7 @@ export default function PublicNavbar() {
               <div className="flex items-center space-x-3 mb-3">
                 {user.image ? (
                   <img
-                    src={user.image?.toString()}
+                    src={user.image.toString()}
                     alt={user.name || "User"}
                     className="w-8 h-8 rounded-full border border-white/20"
                   />
@@ -249,6 +249,7 @@ export default function PublicNavbar() {
                 className="px-3 py-2 rounded-lg text-red-400 hover:bg-white/10 w-full text-sm mt-2 border-t border-white/10 pt-2 flex items-center"
                 onClick={async () => {
                   await authClient.signOut();
+                  window.location.reload()
                   setIsMenuOpen(false);
                 }}
               >
