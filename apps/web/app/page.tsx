@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getFeaturedBlogs } from "./api/blogs";
 import { ArrowRight, Calendar, Heart, MessageCircle, TagIcon } from "lucide-react";
-
+import React from 'react'
 export default async function Home() {
   const featuredBlogs: any = await getFeaturedBlogs();
   return (
@@ -79,7 +79,7 @@ export default async function Home() {
                   <div className="flex items-center">
                     <img
                       src={
-                        blog.author.pfpUrl || "https://via.placeholder.com/32"
+                        blog.authorImgUrl || "https://via.placeholder.com/32"
                       }
                       alt={blog.author.name || "Author"}
                       className="w-6 h-6 rounded-full mr-2"
