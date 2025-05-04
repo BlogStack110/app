@@ -3,6 +3,9 @@ import Link from "next/link";
 import { Menu, X, User, LogOut } from "lucide-react";
 import { useState } from "react";
 import { authClient, useSession } from "../lib/auth-client";
+import { Button } from "./ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { CardsCreateAccount } from "./ui/Signup";
 
 export default function PublicNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -123,25 +126,28 @@ export default function PublicNavbar() {
             ) : (
               <div className="flex items-center space-x-4">
                 <div className="text-white/80">
-                  <button>
-                    <Link
-                      href={"signin"}
-                      className="px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition-colors"
-                    >
-                      Sign in
-                    </Link>
-                  </button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="cursor-pointer underline bg-none font-semibold">
+                        Login
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="p-0 bg-transparent border-none">
+                      <CardsCreateAccount mode="signin" />
+                    </DialogContent>
+                  </Dialog>
                 </div>
                 <div>
-                  <button>
-                    {" "}
-                    <Link
-                      href={"signup"}
-                      className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors"
-                    >
-                      Get Started
-                    </Link>
-                  </button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="cursor-pointer bg-blue-600 hover:bg-slate-300/30 font-semibold">
+                        Get Started
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="p-0 bg-transparent border-none">
+                      <CardsCreateAccount mode="signup" />
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </div>
             )}
@@ -270,15 +276,17 @@ export default function PublicNavbar() {
                 </button>
               </div>
               <div className="flex-grow">
-                <button>
-                  <Link
-                    href={"signup"}
-                    className="w-full px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Get Started
-                  </Link>
-                </button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="cursor-pointer bg-blue-600 hover:bg-slate-300/30 font-semibold">
+                      Get Started
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="p-0 bg-transparent border-none">
+                    <CardsCreateAccount mode='signup' />
+                  </DialogContent>
+                </Dialog>
+
               </div>
             </div>
           )}
