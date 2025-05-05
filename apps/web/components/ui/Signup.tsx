@@ -28,8 +28,8 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
   const onSignInEmail = useCallback(async () => {
     const { data, error } = await authClient.signIn.email(
       {
-        email, // user email address
-        password, // user password -> min 8 characters by default
+        email: email, // user email address
+        password: password, // user password -> min 8 characters by default
         callbackURL: "/",
       },
       {
@@ -63,9 +63,9 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
   const onSignupEmail = useCallback(async () => {
     const { data, error } = await authClient.signUp.email(
       {
-        email, // user email address
-        password, // user password -> min 8 characters by default
-        name, // user display name
+        email: email, // user email address
+        password: password, // user password -> min 8 characters by default
+        name: name, // user display name
         callbackURL: "/",
       },
       {
@@ -99,7 +99,7 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
   if (Mode === 'signup') {
     return (
 
-      <Card className="">
+      <Card className="transform-card">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">Create an account</CardTitle>
           <CardDescription>
@@ -161,7 +161,7 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
   }
   else {
     return (
-      <Card className="">
+      <Card className="transform-card">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">Sign in to your account</CardTitle>
           <CardDescription>
@@ -195,11 +195,16 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="address@example.com" />
+            <Input id="email" type="email" placeholder="address@example.com"
+              onChange={(e) => {
+                setEmail(e.target.value)
+              }} />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" />
+            <Input id="password" type="password" onChange={(e) => {
+              setPassword(e.target.value)
+            }} />
           </div>
         </CardContent>
         <CardFooter className="flex-col space-y-2 pb-2">
@@ -211,4 +216,8 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
       </Card>
     )
   }
+}
+
+const CardComp = () => {
+
 }

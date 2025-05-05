@@ -114,7 +114,12 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.transform-card {
+  transition: 300ms;
 }
