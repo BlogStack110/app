@@ -16,8 +16,8 @@ import { useCallback, useState } from "react"
 import { authClient } from "@/lib/auth-client"
 import { redirect } from "next/navigation"
 
-export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
-  const [Mode, setMode] = useState<'signin' | 'signup'>(mode.mode)
+export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' | 'verification' }) {
+  const [Mode, setMode] = useState<'signin' | 'signup' | 'verification'>(mode.mode)
   const [email, setEmail] = useState<string>("")
   const [name, setName] = useState<string>("")
   const [password, setPassword] = useState<string>("")
@@ -25,7 +25,7 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
 
 
 
-  const onSignInEmail = useCallback(async () => {
+  const onSignInEmail = async () => {
     const { data, error } = await authClient.signIn.email(
       {
         email: email, // user email address
@@ -45,9 +45,8 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
         },
       },
     );
-
-  }, [])
-
+    window.window.location.reload()
+  }
   const onSigninGithub = useCallback(async () => {
     const { data, error } = await authClient.signIn.social({
       provider: "github",
@@ -60,7 +59,9 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
     });
   }, [])
 
-  const onSignupEmail = useCallback(async () => {
+  const onSignupEmail = async () => {
+    setMode('verification')
+
     const { data, error } = await authClient.signUp.email(
       {
         email: email, // user email address
@@ -81,21 +82,18 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
         },
       },
     );
+  }
 
-  }, [])
-
-  const onSignupGithub = useCallback(async () => {
+  const onSignupGithub = async () => {
     const { data, error } = await authClient.signIn.social({
       provider: "github",
     });
-  }, [])
-
-  const onSignupGoogle = useCallback(async () => {
+  }
+  const onSignupGoogle = async () => {
     const { data, error } = await authClient.signIn.social({
       provider: "google",
     });
-  }, [])
-
+  }
   if (Mode === 'signup') {
     return (
 
@@ -132,8 +130,8 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
             </div>
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="email">Name</Label>
-            <Input id="email" type="text" placeholder="Roronoa Zoro" onChange={(e) => {
+            <Label htmlFor="name">Name</Label>
+            <Input id="name" type="text" placeholder="Roronoa Zoro" onChange={(e) => {
               setName(e.target.value)
             }} />
           </div>
@@ -159,7 +157,7 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
       </Card>
     )
   }
-  else {
+  else if (Mode === 'signin') {
     return (
       <Card className="transform-card">
         <CardHeader className="space-y-1">
@@ -216,8 +214,20 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' }) {
       </Card>
     )
   }
+  else if (Mode === 'verification') {
+    return (
+      <Card className="transform-card">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl">Verify your email account</CardTitle>
+          <CardDescription>
+            login using the verification url
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-4">
+          check your inbox at {email}
+        </CardContent>
+      </Card>
+    )
+  }
 }
 
-const CardComp = () => {
-
-}

@@ -9,6 +9,7 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
+    autoSignIn: false
   },
   emailVerification: {
     sendVerificationEmail: async ({ user, url, token }, request) => {
@@ -32,4 +33,5 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
   },
-});
+}
+)
