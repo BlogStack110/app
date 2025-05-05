@@ -1,17 +1,20 @@
 "use client";
 import Link from "next/link";
 import { Menu, X, User, LogOut } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { authClient, useSession } from "../lib/auth-client";
 import { Button } from "./ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { CardsCreateAccount } from "./ui/Signup";
+import { useRouter } from "next/navigation";
 
 export default function PublicNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const session = useSession();
-  const user = session.data?.user;
+  const [user, setUser] = useState(session.data?.user)
+  const canDialogOpen: boolean | undefined = user ? false : undefined
+  const router = useRouter()
   const isLoaded = session.data;
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,6 +23,11 @@ export default function PublicNavbar() {
   const toggleProfile = () => {
     setIsProfileOpen(!isProfileOpen);
   };
+
+  useEffect(() => {
+    router.refresh()
+    setUser(session.data?.user)
+  }, [session])
 
   return (
     <nav className="bg-[#0a0a0a] border-b border-white/10">

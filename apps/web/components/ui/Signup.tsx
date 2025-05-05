@@ -1,4 +1,5 @@
 "use client"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
 
 import { Icons } from "./icons"
 import { Button } from "./button"
@@ -14,7 +15,8 @@ import { Input } from "./input"
 import { Label } from "./label"
 import { useCallback, useState } from "react"
 import { authClient } from "@/lib/auth-client"
-import { redirect } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
+import { DialogPortal } from "./dialog"
 
 export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' | 'verification' }) {
   const [Mode, setMode] = useState<'signin' | 'signup' | 'verification'>(mode.mode)
@@ -22,6 +24,7 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' | 'verifica
   const [name, setName] = useState<string>("")
   const [password, setPassword] = useState<string>("")
   const [loading, setLoading] = useState<boolean>(false)
+  const router = useRouter()
 
 
 
@@ -37,7 +40,8 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' | 'verifica
           setLoading(true);
         },
         onSuccess: (ctx) => {
-          redirect("/");
+          router.refresh()
+          redirect("/dashboard");
         },
         onError: (ctx) => {
           // display the error message
@@ -45,21 +49,20 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' | 'verifica
         },
       },
     );
-    window.window.location.reload()
   }
-  const onSigninGithub = useCallback(async () => {
+  const onSigninGithub = async () => {
     const { data, error } = await authClient.signIn.social({
       provider: "github",
     });
-  }, [])
-
-  const onSigninGoogle = useCallback(async () => {
+  }
+  const onSigninGoogle = async () => {
     const { data, error } = await authClient.signIn.social({
       provider: "google",
     });
-  }, [])
-
+  }
   const onSignupEmail = async () => {
+    router.refresh()
+
     setMode('verification')
 
     const { data, error } = await authClient.signUp.email(
@@ -82,6 +85,7 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' | 'verifica
         },
       },
     );
+
   }
 
   const onSignupGithub = async () => {
@@ -206,7 +210,8 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' | 'verifica
           </div>
         </CardContent>
         <CardFooter className="flex-col space-y-2 pb-2">
-          <Button className="w-full" onClick={onSignInEmail}>Sign in</Button>
+          <DialogPrimitive.Close className="w-full bg-black/90 hover:bg-black/80 delay-75 transition-all text-white p-[6px] text-center rounded-lg" onClick={onSignInEmail}> Sign in
+          </DialogPrimitive.Close>
           <p>don't have an account? <strong className="underline cursor-pointer" onClick={() => {
             setMode('signup')
           }}>signup</strong></p>
