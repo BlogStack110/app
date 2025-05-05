@@ -72,7 +72,7 @@ export default function PublicNavbar() {
                   <div className="flex items-center space-x-3">
                     {user.image ? (
                       <img
-                        src={user.image?.toString()}
+                        src={user.image.toString()}
                         alt={user.name || "User"}
                         className="w-8 h-8 rounded-full border border-white/20"
                       />
@@ -132,7 +132,7 @@ export default function PublicNavbar() {
                         Login
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="p-0 bg-transparent  max-w-[400px] border-none">
+                    <DialogContent className="p-0 bg-transparent  max-w-[400px] border-none outline-none">
                       <CardsCreateAccount mode="signin" />
                       <DialogTitle />
 
@@ -146,7 +146,7 @@ export default function PublicNavbar() {
                         Get Started
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="p-0 bg-transparent  max-w-[400px] border-none">
+                    <DialogContent className="p-0 bg-transparent  max-w-[400px] border-none  outline-none">
                       <CardsCreateAccount mode="signup" />
                       <DialogTitle />
 
@@ -275,7 +275,7 @@ export default function PublicNavbar() {
                       Login
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="p-0 bg-transparent border-none max-w-[400px]">
+                  <DialogContent className="p-0 bg-transparent border-none  outline-none max-w-[400px]">
                     <CardsCreateAccount mode='signin' />
                     <DialogTitle />
                   </DialogContent>
@@ -289,7 +289,7 @@ export default function PublicNavbar() {
                       Get Started
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="p-0 bg-transparent  max-w-[400px] border-none">
+                  <DialogContent className="p-0 bg-transparent  max-w-[400px]  outline-none border-none">
                     <CardsCreateAccount mode='signup' />
                     <DialogTitle />
                   </DialogContent>
