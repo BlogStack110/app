@@ -132,8 +132,10 @@ export default function PublicNavbar() {
                         Login
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="p-0 bg-transparent border-none">
+                    <DialogContent className="p-0 bg-transparent  max-w-[400px] border-none">
                       <CardsCreateAccount mode="signin" />
+                      <DialogTitle />
+
                     </DialogContent>
                   </Dialog>
                 </div>
@@ -144,8 +146,10 @@ export default function PublicNavbar() {
                         Get Started
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="p-0 bg-transparent border-none">
+                    <DialogContent className="p-0 bg-transparent  max-w-[400px] border-none">
                       <CardsCreateAccount mode="signup" />
+                      <DialogTitle />
+
                     </DialogContent>
                   </Dialog>
                 </div>
@@ -265,15 +269,18 @@ export default function PublicNavbar() {
           ) : (
             <div className="flex items-center px-4 space-x-3">
               <div className="text-white/80">
-                <button>
-                  <Link
-                    href={"signin"}
-                    className="w-full px-4 py-2 rounded-lg border border-white/20 hover:bg-white/10 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Sign in
-                  </Link>
-                </button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="cursor-pointer underline font-semibold">
+                      Login
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="p-0 bg-transparent border-none max-w-[400px]">
+                    <CardsCreateAccount mode='signin' />
+                    <DialogTitle />
+                  </DialogContent>
+                </Dialog>
+
               </div>
               <div className="flex-grow">
                 <Dialog>
@@ -282,8 +289,9 @@ export default function PublicNavbar() {
                       Get Started
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="p-0 bg-transparent border-none">
+                  <DialogContent className="p-0 bg-transparent  max-w-[400px] border-none">
                     <CardsCreateAccount mode='signup' />
+                    <DialogTitle />
                   </DialogContent>
                 </Dialog>
 
