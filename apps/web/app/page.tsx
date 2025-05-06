@@ -40,7 +40,7 @@ export default async function Home() {
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold">Featured Blogs</h2>
           <Link
-            href="/blog"
+            href="/blog/"
             className="text-blue-400 hover:text-blue-300 transition-colors"
           >
             View All
