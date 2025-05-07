@@ -25,3 +25,104 @@ export const getFeaturedBlogs: any = async () => {
   });
   return blogs;
 };
+
+
+
+
+export const getBlog = async (id: string) => {
+  try {
+    const blog = await prisma.post.findFirst({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        tags: true,
+        title: true,
+        content: true,
+        authorId: true,
+        imgUrl: true,
+        likes: true,
+        publishDate: true,
+        authorImgUrl: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+        comments: {
+          where: {
+            postId: id,
+          },
+          orderBy: {
+            commentedAt: "desc",
+          },
+          select: {
+            comment: true,
+            commentedAt: true,
+            id: true,
+            user: {
+              select: {
+                name: true,
+                pfpUrl: true,
+                id: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    // Get related posts
+    const relatedPosts = await prisma.post.findMany({
+      where: {
+        id: {
+          not: id,
+        },
+        tags: {
+          hasSome: blog?.tags || [],
+        },
+      },
+      take: 3,
+      select: {
+        id: true,
+        title: true,
+        imgUrl: true,
+        publishDate: true,
+        authorImgUrl: true,
+        likes: true,
+        tags: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+
+    // Create a truncated description from the content
+    const description = blog?.content
+      ? blog.content.replace(/<[^>]*>/g, "").slice(0, 160) + "..."
+      : "";
+
+    return {
+      status: "success",
+      body: {
+        blog,
+        relatedPosts,
+      },
+      meta: {
+        title: blog?.title || "Blog Post",
+        description,
+        image: blog?.imgUrl || "",
+        author: blog?.author.name || "",
+        publishDate: blog?.publishDate || "",
+      },
+    };
+  } catch (e) {
+    return {
+      status: "failure",
+    };
+  }
+
+}
