@@ -7,7 +7,7 @@ COPY package.json package-lock.json tsconfig.json ./
 #install dependencied
 RUN npm i
 
-COPY ./ ./
+COPY . .
 
 #build the app
 
