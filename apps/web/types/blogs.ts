@@ -1,7 +1,10 @@
+import { any } from "better-auth";
+
 export interface BlogData {
   id: string;
   title: string;
   content: string;
+  description?: string; //for short glimpse of the content
   authorId: string;
   authorImgUrl: string;
   publishDate: string;
@@ -20,6 +23,18 @@ export interface BlogData {
     comment: string;
     commentedAt: Date;
   }[];
-  likes: {
-  }[];
+  likes: {}[];
+}
+export interface RelatedPosts {
+  id: string;
+  title: string;
+  authorId: string;
+  authorImgUrl: string;
+  publishDate: string;
+  tags: string[];
+  imgUrl: string;
+  likes: {}[];
+  author: {
+    name: string;
+  };
 }

@@ -1,17 +1,14 @@
-import { getBlog } from "@/app/api/blogs"
+import { getBlogDetails } from "@/app/api/blogs";
 import Blog from "@/components/Blog";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
-  const { id } = await params
-  const BlogData = await getBlog(id)
-  const blog = BlogData.body?.blog
-
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const blogDetails = await getBlogDetails(id);
+  const blog = blogDetails?.blog;
+  const handleCommentSubmit = () => {};
   return (
-    <Blog id={blog?.id ?? ""}
+    <Blog
+      id={blog?.id ?? ""}
       title={blog?.title ?? ""}
       content={blog?.content ?? ""}
       authorId={blog?.authorId ?? ""}
@@ -23,8 +20,7 @@ export default async function Page({
       comments={blog?.comments ?? []}
       likes={blog?.likes ?? []}
     />
-  )
-
+  );
 }
 
 // function stripHtml(html: string): string {
@@ -36,6 +32,4 @@ export default async function Page({
 //
 //   // Server-side fallback - simple regex to strip HTML tags
 //   return html.replace(/<[^>]*>?/gm, "");
-// 
-
-
+//

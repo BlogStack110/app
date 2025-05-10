@@ -1,4 +1,4 @@
-"use client"
+"use client";
 const Loading = () => {
   return (
     <article className="bg-gradient-to-b from-[#111111] to-[#0c0c0c] rounded-xl overflow-hidden shadow-md border border-white/5 animate-pulse">
@@ -32,4 +32,4 @@ const Loading = () => {
     </article>
   );
 };
-export default Loading()
+export default Loading();

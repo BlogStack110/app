@@ -14,7 +14,7 @@ export default async function Home() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
               Share Your Story with the World
             </h1>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
+                 <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
               Create, share, and discover amazing blog posts. Join our community
               of writers and readers.
             </p>
@@ -25,7 +25,7 @@ export default async function Home() {
               >
                 Explore Blogs
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
+                    </Link>
               <Link
                 href={"/"}
                 className="inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-lg transition-colors z-10"
@@ -78,6 +78,7 @@ export default async function Home() {
                 <div className="flex items-center space-x-4 text-sm text-white/60 mb-3">
                   <div className="flex items-center">
                     <img
+                    
                       src={
                         blog.authorImgUrl || "https://via.placeholder.com/32"
                       }
@@ -96,7 +97,7 @@ export default async function Home() {
                   <div className="flex items-center">
                     <MessageCircle className="w-4 h-4 mr-1" />
                     <span>{blog._count.comments}</span>
-                  </div>
+                           </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {blog.tags.slice(0, 3).map((tag: string, index: number) => (

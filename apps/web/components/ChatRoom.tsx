@@ -38,7 +38,7 @@ export default function ChatRoom({ roomName }: ChatRoomProps) {
           };
 
           setMessages((prev) => [...prev, newMessage]);
-        } catch (error) {
+              } catch (error) {
           console.error("Error parsing message data:", error);
         }
       });

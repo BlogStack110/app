@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Menu, X, User, LogOut } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { authClient, useSession } from "../lib/auth-client";
 import { Button } from "./ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
@@ -12,9 +12,9 @@ export default function PublicNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const session = useSession();
-  const [user, setUser] = useState(session.data?.user)
-  const canDialogOpen: boolean | undefined = user ? false : undefined
-  const router = useRouter()
+  const [user, setUser] = useState(session.data?.user);
+  const canDialogOpen: boolean | undefined = user ? false : undefined;
+  const router = useRouter();
   const isLoaded = session.data;
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,9 +25,9 @@ export default function PublicNavbar() {
   };
 
   useEffect(() => {
-    router.refresh()
-    setUser(session.data?.user)
-  }, [session])
+    router.refresh();
+    setUser(session.data?.user);
+  }, [session]);
 
   return (
     <nav className="bg-[#0a0a0a] border-b border-white/10">
@@ -89,9 +89,7 @@ export default function PublicNavbar() {
                         <User className="w-4 h-4 text-white" />
                       </div>
                     )}
-                    <span className="text-sm font-medium text-white">
-                      {user.name}
-                    </span>
+                    <span className="text-sm font-medium text-white">{user.name}</span>
                   </div>
                 </button>
 
@@ -143,7 +141,6 @@ export default function PublicNavbar() {
                     <DialogContent className="p-0 bg-transparent  max-w-[400px] border-none outline-none">
                       <CardsCreateAccount mode="signin" />
                       <DialogTitle />
-
                     </DialogContent>
                   </Dialog>
                 </div>
@@ -157,7 +154,6 @@ export default function PublicNavbar() {
                     <DialogContent className="p-0 bg-transparent  max-w-[400px] border-none  outline-none">
                       <CardsCreateAccount mode="signup" />
                       <DialogTitle />
-
                     </DialogContent>
                   </Dialog>
                 </div>
@@ -235,9 +231,7 @@ export default function PublicNavbar() {
                   </div>
                 )}
                 <div>
-                  <div className="text-sm font-medium text-white">
-                    {user.name}
-                  </div>
+                  <div className="text-sm font-medium text-white">{user.name}</div>
                   <div className="text-xs text-white/60">{user.email}</div>
                 </div>
               </div>
@@ -267,7 +261,7 @@ export default function PublicNavbar() {
                 className="px-3 py-2 rounded-lg text-red-400 hover:bg-white/10 w-full text-sm mt-2 border-t border-white/10 pt-2 flex items-center"
                 onClick={async () => {
                   await authClient.signOut();
-                  window.location.reload()
+                  window.location.reload();
                   setIsMenuOpen(false);
                 }}
               >
@@ -279,16 +273,13 @@ export default function PublicNavbar() {
               <div className="text-white/80">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button className="cursor-pointer underline font-semibold">
-                      Login
-                    </Button>
+                    <Button className="cursor-pointer underline font-semibold">Login</Button>
                   </DialogTrigger>
                   <DialogContent className="p-0 bg-transparent border-none  outline-none max-w-[400px]">
-                    <CardsCreateAccount mode='signin' />
+                    <CardsCreateAccount mode="signin" />
                     <DialogTitle />
                   </DialogContent>
                 </Dialog>
-
               </div>
               <div className="flex-grow">
                 <Dialog>
@@ -298,11 +289,10 @@ export default function PublicNavbar() {
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="p-0 bg-transparent  max-w-[400px]  outline-none border-none">
-                    <CardsCreateAccount mode='signup' />
+                    <CardsCreateAccount mode="signup" />
                     <DialogTitle />
                   </DialogContent>
                 </Dialog>
-
               </div>
             </div>
           )}

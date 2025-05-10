@@ -1,16 +1,24 @@
-"use client"
+"use client";
 import { BlogData } from "@/types/blogs";
-import { ArrowLeft, Calendar, Eye, Heart, ImageIcon, MessageCircle, Share2, TagIcon } from "lucide-react"
-import Link from "next/link"
+import {
+  ArrowLeft,
+  Calendar,
+  Eye,
+  Heart,
+  ImageIcon,
+  MessageCircle,
+  Share2,
+  TagIcon,
+} from "lucide-react";
+import Link from "next/link";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Blog = (blog: BlogData | null) => {
+  const navigate = useRouter();
+  const [imageError, setImageError] = useState<boolean>(false);
 
-
-  const navigate = useRouter()
-  const [imageError, setImageError] = useState<boolean>(false)
   return (
     <div className="flex-grow pb-10 md:pb-20">
       {/* Hero Section with Blog Image */}
@@ -54,16 +62,13 @@ const Blog = (blog: BlogData | null) => {
                   e.currentTarget.src = "https://via.placeholder.com/40";
                 }}
               />
-              <span className="text-white/90 text-sm sm:text-base">
-                {'authour'}
-              </span>
+              <span className="text-white/90 text-sm sm:text-base">{"authour"}</span>
             </div>
             <div className="text-white/70 flex items-center text-xs sm:text-sm">
               <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
 
-
               {/*               <span>{formatDate(blog?.publishDate)}</span>
- */}
+               */}
             </div>
             <div className="text-white/70 flex items-center text-xs sm:text-sm">
               <Heart className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
@@ -115,9 +120,7 @@ const Blog = (blog: BlogData | null) => {
                     <span>Read in dashboard</span>
                   </Link>
 
-                  <button
-                    className="flex items-center space-x-1 text-white/70 hover:text-white transition-colors group text-xs sm:text-sm"
-                  >
+                  <button className="flex items-center space-x-1 text-white/70 hover:text-white transition-colors group text-xs sm:text-sm">
                     <Share2 className="h-4 w-4 sm:h-5 sm:w-5 group-hover:text-blue-400" />
                     <span>Share</span>
                   </button>
@@ -133,9 +136,7 @@ const Blog = (blog: BlogData | null) => {
                     }}
                   />
                   <div>
-                    <div className="text-xs sm:text-sm font-medium">
-                      {"Asd"}
-                    </div>
+                    <div className="text-xs sm:text-sm font-medium">{blog?.author.name}</div>
                     <div className="text-xs text-white/60">Author</div>
                   </div>
                 </div>
@@ -149,6 +150,6 @@ const Blog = (blog: BlogData | null) => {
         </div>
       </div>
     </div>
-  )
-}
-export default Blog
+  );
+};
+export default Blog;
