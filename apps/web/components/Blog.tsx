@@ -54,6 +54,7 @@ const Blog = (blog: BlogData | null) => {
           </h1>
           <div className="flex flex-wrap gap-2 sm:gap-4 mb-4 sm:mb-6">
             <div className="flex items-center">
+
               <Image
                 src={blog?.authorImgUrl.toString() ?? ""}
                 alt={blog?.authorId.toString() ?? ""}

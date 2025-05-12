@@ -12,7 +12,6 @@ COPY . .
 #build the app
 
 RUN npm run build
-
 #start the app
 
 CMD [ "npm", "run", "start" ]
