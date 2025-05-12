@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { getFeaturedBlogs } from "./api/blogs";
 import { ArrowRight, Calendar, Heart, MessageCircle, TagIcon } from "lucide-react";
-import React from 'react'
+import React from "react";
+import Image from "next/image";
+import { BlogData } from "@/types/blogs";
 export default async function Home() {
   const featuredBlogs: any = await getFeaturedBlogs();
   return (
@@ -14,9 +16,9 @@ export default async function Home() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
               Share Your Story with the World
             </h1>
-                 <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
-              Create, share, and discover amazing blog posts. Join our community
-              of writers and readers.
+            <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
+              Create, share, and discover amazing blog posts. Join our community of writers and
+              readers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center ">
               <Link
@@ -25,7 +27,7 @@ export default async function Home() {
               >
                 Explore Blogs
                 <ArrowRight className="ml-2 w-5 h-5" />
-                    </Link>
+              </Link>
               <Link
                 href={"/"}
                 className="inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-lg transition-colors z-10"
@@ -39,16 +41,13 @@ export default async function Home() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold">Featured Blogs</h2>
-          <Link
-            href="/blog/"
-            className="text-blue-400 hover:text-blue-300 transition-colors"
-          >
+          <Link href="/blog/" className="text-blue-400 hover:text-blue-300 transition-colors">
             View All
             <ArrowRight className="inline-block ml-1 w-4 h-4" />
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredBlogs.map((blog: any) => (
+          {featuredBlogs.map((blog: BlogData) => (
             <Link
               key={blog.id}
               href={`/blog/${blog.id}`}
@@ -56,7 +55,7 @@ export default async function Home() {
             >
               <div className="aspect-video relative overflow-hidden">
                 {blog.imgUrl ? (
-                  <img
+                  <Image
                     src={blog.imgUrl}
                     alt={blog.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -64,24 +63,17 @@ export default async function Home() {
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
                     <div className="text-center">
-                      <h3 className="text-lg font-medium text-white/80 px-4">
-                        {blog.title}
-                      </h3>
+                      <h3 className="text-lg font-medium text-white/80 px-4">{blog.title}</h3>
                     </div>
                   </div>
                 )}
               </div>
               <div className="p-4">
-                <h3 className="font-medium mb-2 line-clamp-2">
-                  {blog.title}
-                </h3>
+                <h3 className="font-medium mb-2 line-clamp-2">{blog.title}</h3>
                 <div className="flex items-center space-x-4 text-sm text-white/60 mb-3">
                   <div className="flex items-center">
-                    <img
-                    
-                      src={
-                        blog.authorImgUrl || "https://via.placeholder.com/32"
-                      }
+                    <Image
+                      src={blog.authorImgUrl || "https://via.placeholder.com/32"}
                       alt={blog.author.name || "Author"}
                       className="w-6 h-6 rounded-full mr-2"
                     />
@@ -92,12 +84,12 @@ export default async function Home() {
                   </div>
                   <div className="flex items-center">
                     <Heart className="w-4 h-4 mr-1" />
-                    <span>{blog._count.likes}</span>
+                    <span>{blog.likes.length}</span>
                   </div>
                   <div className="flex items-center">
                     <MessageCircle className="w-4 h-4 mr-1" />
-                    <span>{blog._count.comments}</span>
-                           </div>
+                    <span>{blog.comments.length}</span>
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {blog.tags.slice(0, 3).map((tag: string, index: number) => (
@@ -115,7 +107,6 @@ export default async function Home() {
           ))}
         </div>
       </div>
-
     </main>
   );
 }

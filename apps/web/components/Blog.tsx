@@ -1,4 +1,3 @@
-"use client";
 import { BlogData } from "@/types/blogs";
 import {
   ArrowLeft,
@@ -10,6 +9,7 @@ import {
   Share2,
   TagIcon,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { useRouter } from "next/navigation";
@@ -24,9 +24,9 @@ const Blog = (blog: BlogData | null) => {
       {/* Hero Section with Blog Image */}
       <div className="w-full h-[30vh] sm:h-[40vh] md:h-[50vh] relative max-w-7xl mx-auto">
         {blog?.imgUrl && !imageError ? (
-          <img
-            src={blog.imgUrl}
-            alt={blog.title}
+          <Image
+            src={blog.imgUrl ?? ""}
+            alt={blog.title ?? ""}
             className="w-full h-full object-cover"
             onError={() => setImageError(true)}
           />
@@ -54,9 +54,9 @@ const Blog = (blog: BlogData | null) => {
           </h1>
           <div className="flex flex-wrap gap-2 sm:gap-4 mb-4 sm:mb-6">
             <div className="flex items-center">
-              <img
-                src={blog?.authorImgUrl}
-                alt={blog?.authorId}
+              <Image
+                src={blog?.authorImgUrl.toString() ?? ""}
+                alt={blog?.authorId.toString() ?? ""}
                 className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-white/20 mr-2 sm:mr-3"
                 onError={(e) => {
                   e.currentTarget.src = "https://via.placeholder.com/40";
@@ -127,8 +127,8 @@ const Blog = (blog: BlogData | null) => {
                 </div>
 
                 <div className="flex items-center space-x-2">
-                  <img
-                    src={blog?.authorImgUrl}
+                  <Image
+                    src={blog?.authorImgUrl.toString() ?? ""}
                     alt={"das"}
                     className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-white/10"
                     onError={(e) => {
