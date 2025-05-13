@@ -120,8 +120,7 @@ model Like {
 }
 
 model View {
-  id String @id @unique
-
+  id        String   @id @unique
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)

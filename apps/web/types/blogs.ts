@@ -38,3 +38,24 @@ export interface RelatedPosts {
     name: string;
   };
 }
+
+export interface featuredBlog {
+  author: {
+    name: string;
+    pfpUrl: string | null;
+  };
+  _count: {
+    comments: number;
+    likes: number;
+    views: number;
+  };
+  id: string;
+  title: string;
+  content: string;
+  published: boolean;
+  authorId: string;
+  authorImgUrl: string;
+  publishDate: string;
+  tags: string[];
+  imgUrl: string;
+}

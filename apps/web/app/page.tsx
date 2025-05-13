@@ -3,9 +3,9 @@ import { getFeaturedBlogs } from "./api/blogs";
 import { ArrowRight, Calendar, Heart, MessageCircle, TagIcon } from "lucide-react";
 import React from "react";
 import Image from "next/image";
-import { BlogData } from "@/types/blogs";
+import { featuredBlog } from "@/types/blogs";
 export default async function Home() {
-  const featuredBlogs: any = await getFeaturedBlogs();
+  const featuredBlogs: featuredBlog[] = await getFeaturedBlogs();
   return (
     <main className="flex-grow">
       {/* Hero Section */}
@@ -47,7 +47,7 @@ export default async function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredBlogs.map((blog: BlogData) => (
+          {featuredBlogs.map((blog) => (
             <Link
               key={blog.id}
               href={`/blog/${blog.id}`}
@@ -56,6 +56,8 @@ export default async function Home() {
               <div className="aspect-video relative overflow-hidden">
                 {blog.imgUrl ? (
                   <Image
+                    width={1000}
+                    height={1000}
                     src={blog.imgUrl}
                     alt={blog.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -73,6 +75,8 @@ export default async function Home() {
                 <div className="flex items-center space-x-4 text-sm text-white/60 mb-3">
                   <div className="flex items-center">
                     <Image
+                      width={1000}
+                      height={1000}
                       src={blog.authorImgUrl || "https://via.placeholder.com/32"}
                       alt={blog.author.name || "Author"}
                       className="w-6 h-6 rounded-full mr-2"
@@ -84,11 +88,11 @@ export default async function Home() {
                   </div>
                   <div className="flex items-center">
                     <Heart className="w-4 h-4 mr-1" />
-                    <span>{blog.likes.length}</span>
+                    <span>{blog._count.likes}</span>
                   </div>
                   <div className="flex items-center">
                     <MessageCircle className="w-4 h-4 mr-1" />
-                    <span>{blog.comments.length}</span>
+                    <span>{blog._count.comments}</span>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">

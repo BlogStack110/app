@@ -12,7 +12,7 @@ export const auth = betterAuth({
     autoSignIn: false
   },
   emailVerification: {
-    sendVerificationEmail: async ({ user, url, token }, request) => {
+    sendVerificationEmail: async ({ user, url }, request) => {
       await sendMail({
         from: "blogstack.site",
         to: user.email,

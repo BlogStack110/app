@@ -1,3 +1,4 @@
+"use client";
 import { BlogData } from "@/types/blogs";
 import {
   ArrowLeft,
@@ -25,6 +26,8 @@ const Blog = (blog: BlogData | null) => {
       <div className="w-full h-[30vh] sm:h-[40vh] md:h-[50vh] relative max-w-7xl mx-auto">
         {blog?.imgUrl && !imageError ? (
           <Image
+            height={1000}
+            width={1000}
             src={blog.imgUrl ?? ""}
             alt={blog.title ?? ""}
             className="w-full h-full object-cover"
@@ -56,6 +59,8 @@ const Blog = (blog: BlogData | null) => {
             <div className="flex items-center">
 
               <Image
+                height={1000}
+                width={1000}
                 src={blog?.authorImgUrl.toString() ?? ""}
                 alt={blog?.authorId.toString() ?? ""}
                 className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-white/20 mr-2 sm:mr-3"
@@ -129,6 +134,8 @@ const Blog = (blog: BlogData | null) => {
 
                 <div className="flex items-center space-x-2">
                   <Image
+                    height={100}
+                    width={100}
                     src={blog?.authorImgUrl.toString() ?? ""}
                     alt={"das"}
                     className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-white/10"

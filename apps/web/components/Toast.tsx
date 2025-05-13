@@ -19,7 +19,6 @@ export default function Toast({
 }: ToastProps) {
   const [isVisible, setIsVisible] = useState(true);
   const navigate = useRouter();
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
@@ -38,9 +37,8 @@ export default function Toast({
 
   return (
     <div
-      className={`fixed bottom-4 right-4 bg-gray-800 text-white rounded-lg shadow-lg p-4 flex items-start space-x-3 max-w-xs z-50 transition-all duration-300 transform ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
-      }`}
+      className={`fixed bottom-4 right-4 bg-gray-800 text-white rounded-lg shadow-lg p-4 flex items-start space-x-3 max-w-xs z-50 transition-all duration-300 transform ${isVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+        }`}
       role="alert"
     >
       <div className="bg-blue-500 p-2 rounded-full flex-shrink-0">

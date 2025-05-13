@@ -15,6 +15,7 @@
     "@repo/ui": "*",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/nodemailer": "^6.4.17",
+    "@upstash/redis": "^1.34.9",
     "better-auth": "^1.2.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -28,6 +29,7 @@
     "react-dom": "^19.1.0",
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.1.4",
+    "uuid": "^11.1.0",
     "winston": "^3.17.0"
   },
   "devDependencies": {

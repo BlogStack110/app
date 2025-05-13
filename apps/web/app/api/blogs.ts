@@ -22,7 +22,7 @@ export const getFeaturedBlogs = async () => {
       },
     },
   });
-  return blogs;
+  return blogs
 };
 export const getBlogDetails = async (id: string) => {
   const blog = await prisma.post.findFirst({

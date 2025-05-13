@@ -92,6 +92,7 @@ export function CardsCreateAccount(mode: { mode: 'signin' | 'signup' | 'verifica
     const { data, error } = await authClient.signIn.social({
       provider: "github",
     });
+
   }
   const onSignupGoogle = async () => {
     const { data, error } = await authClient.signIn.social({
