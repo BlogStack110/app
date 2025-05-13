@@ -4,6 +4,7 @@ import { ArrowRight, Calendar, Heart, MessageCircle, TagIcon } from "lucide-reac
 import React from "react";
 import Image from "next/image";
 import { featuredBlog } from "@/types/blogs";
+import BlogCard from "@/components/BlogCard";
 export default async function Home() {
   const featuredBlogs: featuredBlog[] = await getFeaturedBlogs();
   return (
@@ -37,7 +38,7 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </div>
+        f     </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold">Featured Blogs</h2>
@@ -48,67 +49,9 @@ export default async function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuredBlogs.map((blog) => (
-            <Link
-              key={blog.id}
-              href={`/blog/${blog.id}`}
-              className="group bg-[#111111] border border-white/5 rounded-xl overflow-hidden hover:border-white/10 transition-colors"
-            >
-              <div className="aspect-video relative overflow-hidden">
-                {blog.imgUrl ? (
-                  <Image
-                    width={1000}
-                    height={1000}
-                    src={blog.imgUrl}
-                    alt={blog.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
-                    <div className="text-center">
-                      <h3 className="text-lg font-medium text-white/80 px-4">{blog.title}</h3>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div className="p-4">
-                <h3 className="font-medium mb-2 line-clamp-2">{blog.title}</h3>
-                <div className="flex items-center space-x-4 text-sm text-white/60 mb-3">
-                  <div className="flex items-center">
-                    <Image
-                      width={1000}
-                      height={1000}
-                      src={blog.authorImgUrl || "https://via.placeholder.com/32"}
-                      alt={blog.author.name || "Author"}
-                      className="w-6 h-6 rounded-full mr-2"
-                    />
-                    <span>{blog.author.name}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar className="w-4 h-4 mr-1" />
-                  </div>
-                  <div className="flex items-center">
-                    <Heart className="w-4 h-4 mr-1" />
-                    <span>{blog._count.likes}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MessageCircle className="w-4 h-4 mr-1" />
-                    <span>{blog._count.comments}</span>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {blog.tags.slice(0, 3).map((tag: string, index: number) => (
-                    <span
-                      key={index}
-                      className="flex items-center px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded-lg"
-                    >
-                      <TagIcon className="w-3 h-3 mr-1" />
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Link>
+            <BlogCard blog={blog} key={blog.id} />
           ))}
+
         </div>
       </div>
       <div className="bg-[#111111] border-t border-white/5">

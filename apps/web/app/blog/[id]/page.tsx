@@ -5,7 +5,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const { id } = await params;
   const blogDetails = await getBlogDetails(id);
   const blog = blogDetails?.blog;
-  const handleCommentSubmit = () => {};
+  const handleCommentSubmit = () => { };
   return (
     <Blog
       id={blog?.id ?? ""}
