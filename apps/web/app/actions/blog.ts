@@ -1,3 +1,4 @@
+"use server"
 import { Redis } from "@upstash/redis";
 import { prisma } from "@/lib/db";
 import { getRedisConfig } from "lib/url";
