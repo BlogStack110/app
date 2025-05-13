@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Instagram, Twitter, Mail, Github } from "lucide-react";
+import { Facebook, Instagram, Twitter, Github } from "lucide-react";
 
 export default function PublicFooter() {
   return (
