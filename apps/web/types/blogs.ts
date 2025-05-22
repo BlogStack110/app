@@ -1,4 +1,4 @@
-import {any} from 'better-auth';
+import { any } from 'better-auth';
 
 export interface BlogData {
 	id: string;
@@ -39,6 +39,7 @@ export interface RelatedPosts {
 	};
 }
 
+
 export interface featuredBlog {
 	author: {
 		name: string;
@@ -59,3 +60,4 @@ export interface featuredBlog {
 	tags: string[];
 	imgUrl: string;
 }
+
