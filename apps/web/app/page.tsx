@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {getFeaturedBlogs} from './api/blogs';
+import { getFeaturedBlogs } from './api/blogs';
 import {
 	ArrowRight,
 	Calendar,
@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
-import {featuredBlog} from '@/types/blogs';
+import { featuredBlog } from '@/types/blogs';
 import BlogCard from '@/components/BlogCard';
 export default async function Home() {
 	const featuredBlogs: featuredBlog[] = await getFeaturedBlogs();
@@ -44,7 +44,6 @@ export default async function Home() {
 						</div>
 					</div>
 				</div>
-				f{' '}
 			</div>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 				<div className="flex justify-between items-center mb-8">
