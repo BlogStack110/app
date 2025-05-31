@@ -1,7 +1,7 @@
-import {betterAuth} from 'better-auth';
-import {prismaAdapter} from 'better-auth/adapters/prisma';
-import {prisma} from './db';
-import {sendMail} from './email';
+import { betterAuth } from 'better-auth';
+import { prismaAdapter } from 'better-auth/adapters/prisma';
+import { prisma } from './db';
+import { sendMail } from './email';
 export const auth = betterAuth({
 	database: prismaAdapter(prisma, {
 		provider: 'postgresql',
@@ -10,9 +10,17 @@ export const auth = betterAuth({
 		enabled: true,
 		requireEmailVerification: true,
 		autoSignIn: false,
+		sendResetPassword: async ({ user, url, token }, request) => {
+			await sendMail({
+				from: 'blogstack.site',
+				to: user.email,
+				subject: 'Reset your password',
+				html: `<h2><a href=${url}>Click the link to reset your password</a></h2>`,
+			});
+		}
 	},
 	emailVerification: {
-		sendVerificationEmail: async ({user, url}, request) => {
+		sendVerificationEmail: async ({ user, url }, request) => {
 			await sendMail({
 				from: 'blogstack.site',
 				to: user.email,

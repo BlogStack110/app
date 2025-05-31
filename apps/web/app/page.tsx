@@ -2,13 +2,8 @@ import Link from 'next/link';
 import { getFeaturedBlogs } from './api/blogs';
 import {
 	ArrowRight,
-	Calendar,
-	Heart,
-	MessageCircle,
-	TagIcon,
 } from 'lucide-react';
 import React from 'react';
-import Image from 'next/image';
 import { featuredBlog } from '@/types/blogs';
 import BlogCard from '@/components/BlogCard';
 export default async function Home() {

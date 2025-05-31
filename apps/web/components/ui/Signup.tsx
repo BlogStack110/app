@@ -1,8 +1,8 @@
 'use client';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 
-import {Icons} from './icons';
-import {Button} from './button';
+import { Icons } from './icons';
+import { Button } from './button';
 import {
 	Card,
 	CardContent,
@@ -11,12 +11,11 @@ import {
 	CardHeader,
 	CardTitle,
 } from './card';
-import {Input} from './input';
-import {Label} from './label';
-import {useCallback, useState} from 'react';
-import {authClient} from '@/lib/auth-client';
-import {redirect, useRouter} from 'next/navigation';
-import {DialogPortal} from './dialog';
+import { Input } from './input';
+import { Label } from './label';
+import { useState } from 'react';
+import { authClient } from '@/lib/auth-client';
+import { redirect, useRouter } from 'next/navigation';
 
 export function CardsCreateAccount(mode: {
 	mode: 'signin' | 'signup' | 'verification';
@@ -31,7 +30,7 @@ export function CardsCreateAccount(mode: {
 	const router = useRouter();
 
 	const onSignInEmail = async () => {
-		const {data, error} = await authClient.signIn.email(
+		const { data, error } = await authClient.signIn.email(
 			{
 				email: email, // user email address
 				password: password, // user password -> min 8 characters by default
@@ -53,12 +52,12 @@ export function CardsCreateAccount(mode: {
 		);
 	};
 	const onSigninGithub = async () => {
-		const {data, error} = await authClient.signIn.social({
+		const { data, error } = await authClient.signIn.social({
 			provider: 'github',
 		});
 	};
 	const onSigninGoogle = async () => {
-		const {data, error} = await authClient.signIn.social({
+		const { data, error } = await authClient.signIn.social({
 			provider: 'google',
 		});
 	};
@@ -67,7 +66,7 @@ export function CardsCreateAccount(mode: {
 
 		setMode('verification');
 
-		const {data, error} = await authClient.signUp.email(
+		const { data, error } = await authClient.signUp.email(
 			{
 				email: email, // user email address
 				password: password, // user password -> min 8 characters by default
@@ -90,12 +89,12 @@ export function CardsCreateAccount(mode: {
 	};
 
 	const onSignupGithub = async () => {
-		const {data, error} = await authClient.signIn.social({
+		const { data, error } = await authClient.signIn.social({
 			provider: 'github',
 		});
 	};
 	const onSignupGoogle = async () => {
-		const {data, error} = await authClient.signIn.social({
+		const { data, error } = await authClient.signIn.social({
 			provider: 'google',
 		});
 	};
@@ -169,6 +168,7 @@ export function CardsCreateAccount(mode: {
 								setPassword(e.target.value);
 							}}
 						/>
+
 					</div>
 				</CardContent>
 				<CardFooter className="flex-col space-y-2 pb-2">
@@ -247,6 +247,9 @@ export function CardsCreateAccount(mode: {
 								setPassword(e.target.value);
 							}}
 						/>
+						<p className='text-sm
+							'>Forgot password ? <strong className='underline cursor-pointer'> reset password</strong> </p>
+
 					</div>
 				</CardContent>
 				<CardFooter className="flex-col space-y-2 pb-2">
