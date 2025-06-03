@@ -1,6 +1,6 @@
 'use client';
 import { Calendar, Heart, MessageCircle, TagIcon } from 'lucide-react';
-import { featuredBlog } from '@/types/blogs';
+import { featuredBlog, RelatedPosts, BlogData } from '@/types/blogs';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -39,7 +39,7 @@ export default function BlogCard({ blog }: { blog: featuredBlog }) {
 						<Image
 							width={1000}
 							height={1000}
-							src={blog.authorImgUrl || 'https://via.placeholder.com/32'}
+							src={blog.authorImgUrl || 'https://dummyimage.com/100x100'}
 							alt={blog.author.name || 'Author'}
 							className="w-6 h-6 rounded-full mr-2"
 						/>

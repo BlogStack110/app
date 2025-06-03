@@ -6,20 +6,12 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 	const { id } = await params;
 	const blogDetails = await getBlogDetails(id);
 	const blog = blogDetails?.blog;
+	const relatedPosts = blogDetails?.relatedPosts;
 	// const handleCommentSubmit = () => {};
 	return (
 		<Blog
-			id={blog?.id ?? ''}
-			title={blog?.title ?? ''}
-			content={blog?.content ?? ''}
-			authorId={blog?.authorId ?? ''}
-			authorImgUrl={blog?.authorImgUrl ?? ''}
-			publishDate={blog?.publishDate ?? ''}
-			tags={blog?.tags ?? []}
-			imgUrl={blog?.imgUrl ?? ''}
-			author={{ name: blog?.author.name ?? '' }}
-			comments={blog?.comments ?? []}
-			likes={blog?.likes ?? []}
+			blog={blog}
+			relatedPosts={relatedPosts}
 		/>
 	);
 }
