@@ -10,6 +10,7 @@ import {
 	SendHorizontal,
 	Share2,
 	TagIcon,
+	UserIcon,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -349,7 +350,135 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 						</div>
 					</div>
 
+					<div className="lg:col-span-1 space-y-4 sm:space-y-6">
+						{/* Author Card */}
+						<div className="bg-[#111111] border border-white/5 rounded-xl shadow-xl overflow-hidden">
+							<div className="p-4 sm:p-6">
+								<h3 className="text-base sm:text-lg font-bold mb-4 border-b border-white/10 pb-2">
+									About the Author
+								</h3>
+								<div className="flex items-center mb-4">
+									<Image
+										height={1000}
+										width={1000}
+										src={blog?.authorImgUrl ?? "https://dummyimage.com/64x64"}
+										alt={blog?.author.name ?? "Author"}
+										className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-blue-500 mr-3 sm:mr-4"
+										onError={(e) => {
+											e.currentTarget.src = "https://via.placeholder.com/64";
+										}}
+									/>
+									<div>
+										<h4 className="font-bold text-sm sm:text-base">
+											{blog?.author.name}
+										</h4>
+										<p className="text-white/70 text-xs sm:text-sm">
+											Content Creator
+										</p>
+									</div>
+								</div>
+								<p className="text-white/80 text-xs sm:text-sm mb-4">
+									Author of insightful articles and thought-provoking content.
+								</p>
+								<Link
+									href={`/dashboard`}
+									className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors text-xs sm:text-sm"
+								>
+									<UserIcon className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+									Join BlogStack
+								</Link>
+							</div>
+						</div>
 
+						{/* Related Posts */}
+						{relatedPosts && relatedPosts.length > 0 && (
+							<div className="bg-[#111111] border border-white/5 rounded-xl shadow-xl overflow-hidden">
+								<div className="p-4 sm:p-6">
+									<h3 className="text-base sm:text-lg font-bold mb-4 border-b border-white/10 pb-2">
+										Related Posts
+									</h3>
+									<div className="space-y-4">
+										{relatedPosts.map(
+											(post => (
+												<Link
+													key={post.id}
+													href={`/blog/${post.id}`}
+													className="block group"
+												>
+													<div className="flex gap-3 items-start">
+														<div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden flex-shrink-0">
+															{post.imgUrl ? (
+																<Image
+																	height={1000}
+																	width={1000}
+																	src={post.imgUrl}
+																	alt={post.title}
+																	className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+																	onError={(e) => {
+																		e.currentTarget.parentElement?.classList.add(
+																			"bg-gradient-to-r",
+																			"from-blue-500/20",
+																			"to-purple-500/20"
+																		);
+																		e.currentTarget.style.display = "none";
+																	}}
+																/>
+															) : (
+																<div className="w-full h-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 flex items-center justify-center">
+																	<TagIcon className="w-6 h-6 text-blue-400" />
+																</div>
+															)}
+														</div>
+														<div>
+															<h4 className="font-medium text-sm sm:text-base line-clamp-2 group-hover:text-blue-400 transition-colors">
+																{post.title}
+															</h4>
+															<div className="flex items-center gap-2 mt-1 text-xs text-white/60">
+																<span>{post.author.name}</span>
+																<span>•</span>
+																<span className="flex items-center">
+																	<Heart className="w-3 h-3 mr-1" />
+																	{post.likes.length}
+																</span>
+															</div>
+															{post.tags && post.tags.length > 0 && (
+																<span className="inline-block text-[10px] px-1.5 py-0.5 bg-blue-500/10 text-blue-400 rounded mt-1">
+																	{post.tags[0]}
+																</span>
+															)}
+														</div>
+													</div>
+												</Link>
+											))
+										)}
+									</div>
+								</div>
+							</div>
+						)}
+
+						{/* Join Banner */}
+						{
+							!user ? (
+								<div className="bg-gradient-to-r from-blue-600 to-blue-700 border border-blue-500 rounded-xl shadow-xl overflow-hidden">
+									<div className="p-4 sm:p-6">
+										<h3 className="text-base sm:text-lg font-bold mb-2">
+											Join BlogStack Community
+										</h3>
+										<p className="text-white/90 text-xs sm:text-sm mb-4">
+											Create your own blog posts, engage with other writers, and
+											build your audience.
+										</p>
+										<Link
+											href="/dashboard"
+											className="inline-block w-full text-center bg-white text-blue-600 font-medium text-sm py-2 px-4 rounded-lg hover:bg-white/90 transition-colors"
+										>
+											Get Started
+										</Link>
+									</div>
+								</div>) : null
+						}
+
+					</div>
 				</div>
 			</div>
 		</div >

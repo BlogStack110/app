@@ -1,4 +1,3 @@
-""
 import { getBlogDetails } from '@/app/api/blogs';
 import Blog from '@/components/Blog';
 
