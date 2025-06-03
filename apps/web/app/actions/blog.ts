@@ -1,8 +1,8 @@
 'use server';
-import {Redis} from '@upstash/redis';
-import {prisma} from '@/lib/db';
-import {getRedisConfig} from 'lib/url';
-import {randomUUID} from 'node:crypto';
+import { Redis } from '@upstash/redis';
+import { prisma } from '@/lib/db';
+import { getRedisConfig } from 'lib/url';
+import { randomUUID } from 'node:crypto';
 
 export async function getBlogById(id: string) {
 	try {
@@ -63,6 +63,41 @@ export async function getBlogById(id: string) {
 		console.error('Error getting blog:', error);
 		return null;
 	}
+}
+
+
+
+export async function getBlogByTag(tag: string) {
+	const blogs = await prisma.post.findMany({
+		where: {
+			tags: {
+				has: tag,
+			},
+		},
+		orderBy: {
+			publishDate: 'desc',
+		}
+		,
+		select: {
+			id: true,
+			tags: true,
+			title: true,
+			content: true,
+			authorId: true,
+			imgUrl: true,
+			likes: true,
+			publishDate: true,
+			authorImgUrl: true,
+			author: {
+				select: {
+					name: true,
+				},
+			},
+		},
+
+	}
+	)
+	return blogs;
 }
 
 export async function getViewCount(blogId: number) {

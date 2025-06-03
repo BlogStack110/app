@@ -1,19 +1,18 @@
 'use client';
 import Link from 'next/link';
-import {Menu, X, User, LogOut} from 'lucide-react';
-import {useEffect, useState} from 'react';
-import {authClient, useSession} from '../lib/auth-client';
-import {Button} from './ui/button';
-import {Dialog, DialogContent, DialogTitle, DialogTrigger} from './ui/dialog';
-import {CardsCreateAccount} from './ui/Signup';
-import {useRouter} from 'next/navigation';
+import { Menu, X, User, LogOut } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { authClient, useSession } from '../lib/auth-client';
+import { Button } from './ui/button';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog';
+import { CardsCreateAccount } from './ui/Signup';
+import { useRouter } from 'next/navigation';
 
 export default function PublicNavbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isProfileOpen, setIsProfileOpen] = useState(false);
 	const session = useSession();
 	const [user, setUser] = useState(session.data?.user);
-	const canDialogOpen: boolean | undefined = user ? false : undefined;
 	const router = useRouter();
 	const isLoaded = session.data;
 	const toggleMenu = () => {

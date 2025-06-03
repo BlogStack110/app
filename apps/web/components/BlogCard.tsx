@@ -1,10 +1,12 @@
 'use client';
-import {Calendar, Heart, MessageCircle, TagIcon} from 'lucide-react';
-import {featuredBlog} from '@/types/blogs';
+import { Calendar, Heart, MessageCircle, TagIcon } from 'lucide-react';
+import { featuredBlog } from '@/types/blogs';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
-export default function BlogCard({blog}: {blog: featuredBlog}) {
+export default function BlogCard({ blog }: { blog: featuredBlog }) {
+	const router = useRouter();
 	return (
 		<Link
 			key={blog.id}
@@ -57,13 +59,17 @@ export default function BlogCard({blog}: {blog: featuredBlog}) {
 				</div>
 				<div className="flex flex-wrap gap-2">
 					{blog.tags.slice(0, 3).map((tag: string, index: number) => (
-						<span
-							key={index}
-							className="flex items-center px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded-lg"
-						>
-							<TagIcon className="w-3 h-3 mr-1" />
-							{tag}
-						</span>
+						<div onClick={() => {
+							router.push(`/blog/tag/${tag}`);
+						}} key={index}>
+							<span
+								key={index}
+								className="flex items-center px-2 py-1 text-xs bg-blue-500/10 text-blue-400 rounded-lg"
+							>
+								<TagIcon className="w-3 h-3 mr-1" />
+								{tag}
+							</span>
+						</div>
 					))}
 				</div>
 			</div>
