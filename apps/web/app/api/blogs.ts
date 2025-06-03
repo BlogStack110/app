@@ -1,5 +1,5 @@
-import {prisma} from '../../lib/db';
-import {BlogData, RelatedPosts} from '../../types/blogs';
+import { prisma } from '../../lib/db';
+import { BlogData, RelatedPosts } from '../../types/blogs';
 export const getFeaturedBlogs = async () => {
 	const blogs = await prisma.post.findMany({
 		take: 6,
@@ -104,7 +104,7 @@ export const getBlogDetails = async (id: string) => {
 			blog: BlogData;
 			relatedPosts: RelatedPosts[];
 			description: string;
-		} = {blog, relatedPosts, description};
+		} = { blog, relatedPosts, description };
 		return response;
 	}
 };

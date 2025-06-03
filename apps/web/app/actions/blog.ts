@@ -131,3 +131,34 @@ export async function updateViews(postId: string, userId: string) {
 		return false;
 	}
 }
+
+
+export async function getRelatedPosts(id: string, tags: string[]) {
+	const relatedPosts = await prisma.post.findMany({
+		where: {
+			id: {
+				not: id,
+			},
+			tags: {
+				hasSome: tags || [],
+			},
+		},
+		take: 3,
+		select: {
+			id: true,
+			authorId: true,
+			title: true,
+			imgUrl: true,
+			publishDate: true,
+			authorImgUrl: true,
+			likes: true,
+			tags: true,
+			author: {
+				select: {
+					name: true,
+				},
+			},
+		},
+	});
+	return relatedPosts;
+}

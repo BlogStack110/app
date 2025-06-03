@@ -98,7 +98,14 @@ export default function PublicNavbar() {
 
 								{/* User dropdown menu */}
 								{isProfileOpen && (
-									<div className="absolute right-0 mt-2 w-48 bg-[#111111] border border-white/10 rounded-lg shadow-lg py-1 z-10">
+									<div className="absolute right-0 mt-2 w-48 bg-[#111111] border border-white/10 rounded-lg shadow-lg py-1 z-10"
+										onKeyDown={(e) => {
+											if (e.key === 'Escape') {
+												setIsProfileOpen(false);
+											}
+										}
+										}
+									>
 										<Link
 											href="/dashboard"
 											className="block px-4 py-2 text-sm text-white hover:bg-white/10"
@@ -220,7 +227,8 @@ export default function PublicNavbar() {
 				</div>
 				<div className="pt-4 pb-3 border-t border-white/10">
 					{isLoaded && user ? (
-						<div className="space-y-2 px-4">
+						<div className="space-y-2 px-4"
+						>
 							<div className="flex items-center space-x-3 mb-3">
 								{user.image ? (
 									<Image
@@ -242,7 +250,6 @@ export default function PublicNavbar() {
 									<div className="text-xs text-white/60">{user.email}</div>
 								</div>
 							</div>
-
 							<Link
 								href="/dashboard"
 								className="block px-3 py-2 rounded-lg text-white hover:bg-white/10 w-full text-sm"
