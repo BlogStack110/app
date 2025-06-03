@@ -1,11 +1,12 @@
-import {getBlogDetails} from '@/app/api/blogs';
+""
+import { getBlogDetails } from '@/app/api/blogs';
 import Blog from '@/components/Blog';
 
-export default async function Page({params}: {params: Promise<{id: string}>}) {
-	const {id} = await params;
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+	const { id } = await params;
 	const blogDetails = await getBlogDetails(id);
 	const blog = blogDetails?.blog;
-	const handleCommentSubmit = () => {};
+	// const handleCommentSubmit = () => {};
 	return (
 		<Blog
 			id={blog?.id ?? ''}
@@ -16,7 +17,7 @@ export default async function Page({params}: {params: Promise<{id: string}>}) {
 			publishDate={blog?.publishDate ?? ''}
 			tags={blog?.tags ?? []}
 			imgUrl={blog?.imgUrl ?? ''}
-			author={{name: blog?.author.name ?? ''}}
+			author={{ name: blog?.author.name ?? '' }}
 			comments={blog?.comments ?? []}
 			likes={blog?.likes ?? []}
 		/>

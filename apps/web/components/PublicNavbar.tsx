@@ -7,7 +7,7 @@ import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog';
 import { CardsCreateAccount } from './ui/Signup';
 import { useRouter } from 'next/navigation';
-
+import Image from 'next/image';
 export default function PublicNavbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -78,7 +78,9 @@ export default function PublicNavbar() {
 								>
 									<div className="flex items-center space-x-3">
 										{user.image ? (
-											<img
+											<Image
+												height={1000}
+												width={1000}
 												src={user.image.toString()}
 												alt={user.name || 'User'}
 												className="w-8 h-8 rounded-full border border-white/20"
@@ -221,7 +223,9 @@ export default function PublicNavbar() {
 						<div className="space-y-2 px-4">
 							<div className="flex items-center space-x-3 mb-3">
 								{user.image ? (
-									<img
+									<Image
+										height={1000}
+										width={1000}
 										src={user.image.toString()}
 										alt={user.name || 'User'}
 										className="w-8 h-8 rounded-full border border-white/20"
