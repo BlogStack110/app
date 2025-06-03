@@ -204,9 +204,7 @@ const Blog = (blog: BlogData | null) => {
 									// Loading state for user authentication
 									<div className="mb-6">
 										<div className="flex items-start sm:items-center gap-3 mb-4">
-											<div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 animate-pulse"></div>
 											<div className="flex-1">
-												<div className="w-full h-10 sm:h-12 bg-white/10 rounded-lg animate-pulse"></div>
 											</div>
 										</div>
 									</div>
@@ -218,7 +216,7 @@ const Blog = (blog: BlogData | null) => {
 												height={1000}
 												width={1000}
 												src={
-													user?.image || "https://via.placeholder.com/40"
+													user.image || "https://via.placeholder.com/40"
 												}
 												alt="Your profile"
 												className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-white/10"
@@ -281,22 +279,6 @@ const Blog = (blog: BlogData | null) => {
 
 								{/* Comments List Preview */}
 								<div className="space-y-4 sm:space-y-6 max-h-[300px] sm:max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-									<div className="animate-pulse space-y-4">
-										{[...Array(3)].map((_, index) => (
-											<div
-												key={index}
-												className="border-b border-white/5 pb-4 sm:pb-6"
-											>
-												<div className="flex items-start gap-3">
-													<div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10"></div>
-													<div className="flex-1">
-														<div className="w-24 h-4 bg-white/10 rounded mb-2"></div>
-														<div className="w-full h-10 bg-white/10 rounded"></div>
-													</div>
-												</div>
-											</div>
-										))}
-									</div>
 									<div className="text-center p-6 sm:p-8 text-white/50">
 										<MessageCircle className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 sm:mb-4 opacity-30" />
 										<p className="text-sm sm:text-base">
