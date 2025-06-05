@@ -309,7 +309,7 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 														height={1000}
 														width={1000}
 														src={
-															comment.user.pfpUrl ??
+															comment.user.image ??
 															"https://imgs.search.brave.com/VneMoX7Cl7XDPD7DguYtmdLDfVBIwtaLV6fbnFx77Jc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzEwLzU0LzA5LzI3/LzM2MF9GXzEwNTQw/OTI3ODBfbGlPYllR/bzEwUG4yeE9vNENt/R1laTWVXaXcwUDdD/VDIuanBn"
 														}
 														alt={comment.user.name}
