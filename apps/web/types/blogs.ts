@@ -18,7 +18,7 @@ export interface BlogData {
 		user: {
 			id: string;
 			name: string;
-			pfpUrl: string | null;
+			image: string | null;
 		};
 		comment: string;
 		commentedAt: Date;

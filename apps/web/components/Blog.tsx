@@ -18,6 +18,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useSession } from '@/lib/auth-client';
+import { pushComment } from '@/app/actions/comments';
 
 interface BlogDetails {
 	blog: BlogData | undefined;
@@ -48,9 +49,10 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 
 
 	// Handle comment submission with loading state
-	const handleCommentSubmit = () => {
+	const handleCommentSubmit = async () => {
 		if (!comment.trim()) return;
 		setIsSubmitting(true);
+		await pushComment(blog?.id ?? "", user?.id ?? '', comment)
 		setTimeout(() => {
 			setComment("");
 			setIsSubmitting(false);
@@ -307,7 +309,7 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 														height={1000}
 														width={1000}
 														src={
-															comment.user.pfpUrl ||
+															comment.user.image ??
 															"https://imgs.search.brave.com/VneMoX7Cl7XDPD7DguYtmdLDfVBIwtaLV6fbnFx77Jc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzEwLzU0LzA5LzI3/LzM2MF9GXzEwNTQw/OTI3ODBfbGlPYllR/bzEwUG4yeE9vNENt/R1laTWVXaXcwUDdD/VDIuanBn"
 														}
 														alt={comment.user.name}
