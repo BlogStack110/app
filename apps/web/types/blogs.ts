@@ -1,4 +1,3 @@
-import { any } from 'better-auth';
 
 export interface BlogData {
 	id: string;
@@ -43,7 +42,7 @@ export interface RelatedPosts {
 export interface featuredBlog {
 	author: {
 		name: string;
-		pfpUrl: string | null;
+		image: string | null;
 	};
 	_count: {
 		comments: number;
