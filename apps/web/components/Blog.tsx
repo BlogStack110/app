@@ -32,8 +32,19 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 	const [imageError, setImageError] = useState(false);
 	const [comment, setComment] = useState<string>('');
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-
+	const session = useSession();
 	const [commentState, setCommentState] = useState<'idle' | 'submitting' | 'loading'>('idle');
+
+
+
+	const formatDate = (dateString: string) => {
+		const options: Intl.DateTimeFormatOptions = {
+			year: "numeric",
+			month: "short",
+			day: "numeric",
+		};
+		return new Date(dateString).toLocaleDateString("en-US", options);
+	};
 
 
 	// Handle comment submission with loading state
@@ -46,10 +57,6 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 		}, 500);
 	};
 
-
-
-
-	const session = useSession();
 	return (
 		<div className="flex-grow pb-10 md:pb-20">
 			{/* Hero Section with Blog Image */}
@@ -104,8 +111,7 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 						<div className="text-white/70 flex items-center text-xs sm:text-sm">
 							<Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
 
-							{/*               <span>{formatDate(blog?.publishDate)}</span>
-							 */}
+							<span>{formatDate(blog?.publishDate ?? new Date().toString())}</span>
 						</div>
 						<div className="text-white/70 flex items-center text-xs sm:text-sm">
 							<Heart className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
