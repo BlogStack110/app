@@ -386,11 +386,11 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 							{/* Action Icons */}
 							<Dialog>
 								<DialogTrigger>
-									<button className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors relative group">
+									<button className="p-2 rounded-lg  transition-colors relative group">
 										<Bell className="h-5 w-5 text-white/70 group-hover:text-white transition-colors" />
 									</button>
 								</DialogTrigger>
-								<DialogContent className="sm:max-w-[425px] bg-black/50 backdrop-blur-sm">
+								<DialogContent className="sm:max-w-[425px] backdrop-blur-sm">
 									<DialogHeader>
 										<DialogTitle>Notifications</DialogTitle>
 										<DialogDescription>
