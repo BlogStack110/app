@@ -12,10 +12,10 @@ import { Metadata } from 'next';
 
 
 export const metadata: Metadata = {
-	title: 'Home | Blogstack',
+	title: 'Blogstack - Your Personal Blogging Platform',
 	description: 'Create, share, and discover amazing blog posts. Join our community of writers and readers.',
 	openGraph: {
-		title: 'Home | Blogstack',
+		title: 'Blogstack - Your Personal Blogging Platform',
 		description: 'Create, share, and discover amazing blog posts. Join our community of writers and readers.',
 		images: [
 			{
