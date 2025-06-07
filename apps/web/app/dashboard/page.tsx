@@ -6,8 +6,47 @@ import { getDashboardData } from '../actions/dashboardData';
 import { authClient } from '@/lib/auth-client';
 import { formatDate } from 'date-fns';
 import { Welcome } from '@/components/welcomePanel';
+import { Metadata } from 'next';
 
-
+export const metadata: Metadata = {
+	title: 'Dashboard | Blogstack',
+	description: 'Manage your posts and interactions',
+	openGraph: {
+		title: 'Dashboard | Blogstack',
+		description: 'Manage your posts and interactions',
+		images: [
+			{
+				url: 'https://1d6kykqofq.ufs.sh/f/fVvo0hHNtQOLVHwHlnP18aupHxIdmj9WvyiofM5sPS1gAGDB',
+				width: 1200,
+				height: 630,
+				alt: 'Blogstack - Create, share, and discover amazing blog posts',
+			},
+		],
+		type: 'website',
+		siteName: 'Blogstack',
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: 'Home | Blogstack',
+		description: 'Create, share, and discover amazing blog posts. Join our community of writers and readers.',
+		images: ['https://1d6kykqofq.ufs.sh/f/fVvo0hHNtQOLVHwHlnP18aupHxIdmj9WvyiofM5sPS1gAGDB'],
+	},
+	metadataBase: new URL('https://blogstack.com'), // Replace with your actual domain
+	alternates: {
+		canonical: '/',
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			'max-video-preview': -1,
+			'max-image-preview': 'large',
+			'max-snippet': -1,
+		},
+	},
+};
 
 export default async function Page() {
 	const session = await authClient.getSession();
