@@ -263,7 +263,7 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 											post.
 										</p>
 										<Link
-											href={`/dashboard/fullblog/${blog?.id}`}
+											href={`/`}
 											className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
 										>
 											Sign in to comment
@@ -477,7 +477,7 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 											build your audience.
 										</p>
 										<Link
-											href="/dashboard"
+											href="/"
 											className="inline-block w-full text-center bg-white text-blue-600 font-medium text-sm py-2 px-4 rounded-lg hover:bg-white/90 transition-colors"
 										>
 											Get Started
