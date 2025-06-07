@@ -11,6 +11,7 @@ export const getFeaturedBlogs = async () => {
 				select: {
 					name: true,
 					pfpUrl: true,
+					image: true,
 				},
 			},
 			_count: {
