@@ -7,7 +7,6 @@ import {
 	AlignJustify,
 	X,
 	BookMarked,
-	LayoutDashboard,
 	NotebookPen,
 	MessageSquareText,
 	Search,
