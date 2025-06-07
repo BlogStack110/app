@@ -262,7 +262,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 							href="/dashboard"
 							className="flex items-center space-x-3 text-white group"
 						>
-							<div className="bg-gradient-to-r shadow-blue-500/80 from-blue-300/50 to-indigo-400/50 backdrop-blur-sm backdrop-brightness-105 p-2 rounded-lg shadow-lg transition-all duration-300 group-hover:shadow-blue-500/20">
+							<div className="bg-gradient-to-r shadow-blue-500/80 from-blue-300/90 to-indigo-400/90 backdrop-blur-sm backdrop-brightness-105 p-2 rounded-lg shadow-lg transition-all duration-300 group-hover:shadow-blue-500/20">
 								<Image
 									className="h-6 w-6 "
 
