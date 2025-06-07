@@ -6,10 +6,13 @@ import {
 import React from 'react';
 import { featuredBlog } from '@/types/blogs';
 import BlogCard from '@/components/BlogCard';
+import PublicNavbar from '@/components/PublicNavbar';
+import PublicFooter from '@/components/PublicFooter';
 export default async function Home() {
 	const featuredBlogs: featuredBlog[] = await getFeaturedBlogs();
 	return (
 		<main className="flex-grow">
+			<PublicNavbar />
 			{/* Hero Section */}
 			<div className="relative overflow-hidden">
 				<div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
@@ -133,6 +136,7 @@ export default async function Home() {
 					</div>
 				</div>
 			</div>
+			<PublicFooter />
 		</main>
 	);
 }
