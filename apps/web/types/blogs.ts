@@ -1,3 +1,4 @@
+import { Post } from "@/app/generated/prisma";
 
 export interface BlogData {
 	id: string;
@@ -77,3 +78,33 @@ export interface featuredBlog {
 	imgUrl: string;
 }
 
+
+export interface PostWithAuthor extends Post {
+	author: {
+		name: string | null;
+		pfpUrl: string | null;
+	};
+	_count: {
+		likes: number;
+		comments: number;
+		views: number;
+	};
+}
+
+
+
+export interface DashboardData {
+	status: string;
+	body: {
+		posts: number;
+		bookmarks: number;
+		joinedOn: Date;
+		blogs: PostWithAuthor[];
+		pagination: {
+			currentPage: number;
+			totalPages: number;
+			hasNextPage: boolean;
+			hasPrevPage: boolean;
+		};
+	};
+}
