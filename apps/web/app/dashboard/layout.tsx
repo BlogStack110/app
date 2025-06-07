@@ -386,9 +386,9 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 							{/* Action Icons */}
 							<Dialog>
 								<DialogTrigger>
-									<button className="p-2 rounded-lg  transition-colors relative group">
+									<div className="p-2 rounded-lg  transition-colors relative group">
 										<Bell className="h-5 w-5 text-white/70 group-hover:text-white transition-colors" />
-									</button>
+									</div>
 								</DialogTrigger>
 								<DialogContent className="sm:max-w-[425px] backdrop-blur-sm">
 									<DialogHeader>
@@ -422,6 +422,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 					{children}
 				</main>
 			</div>
+
 		</div>
 	);
 };
