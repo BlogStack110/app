@@ -38,6 +38,23 @@ export interface RelatedPosts {
 	};
 }
 
+export interface DashboardBlogData {
+	authorName: string;
+	title: string;
+	authorId: string;
+	content: string;
+	publishDate: string;
+	comments: number;
+	views: number;
+	tags: string[];
+	likes: number;
+	id: string;
+	likeCount: number;
+	imgUrl: string;
+	authorImgUrl: string;
+	bookmarked: boolean;
+	deleteable?: boolean;
+}
 
 export interface featuredBlog {
 	author: {
