@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react';
-import Toast, {ToastProps} from './Toast';
+import { useEffect, useState } from 'react';
+import Toast, { ToastProps } from './Toast';
 
 export interface ToastNotification extends Omit<ToastProps, 'onClose'> {
 	id: string;
@@ -11,7 +11,7 @@ export default function ToastContainer() {
 	// Setup global event listener for new message notifications
 	useEffect(() => {
 		const handleNewMessage = (event: CustomEvent) => {
-			const {message, conversationId, senderName} = event.detail;
+			const { message, conversationId, senderName } = event.detail;
 
 			// Add new toast with unique ID
 			const newToast: ToastNotification = {

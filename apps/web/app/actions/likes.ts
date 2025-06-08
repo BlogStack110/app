@@ -1,6 +1,5 @@
 'use server';
-import {prisma} from '@/lib/db';
-import {randomUUID} from 'node:crypto';
+import { prisma } from '@/lib/db';
 
 export async function getLikes(userId: string) {
 	try {
@@ -21,7 +20,6 @@ export async function addLike(userId: string, postId: string) {
 	try {
 		const like = await prisma.like.create({
 			data: {
-				id: randomUUID(),
 				userId: userId,
 				postId: postId,
 			},

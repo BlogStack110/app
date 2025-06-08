@@ -2,7 +2,6 @@
 import { Redis } from '@upstash/redis';
 import { prisma } from '@/lib/db';
 import { getRedisConfig } from 'lib/url';
-import { randomUUID } from 'node:crypto';
 
 export async function getBlogById(id: string) {
 	try {
@@ -113,10 +112,8 @@ export async function getViewCount(blogId: number) {
 
 export async function updateViews(postId: string, userId: string) {
 	try {
-		const viewId = randomUUID();
 		await prisma.view.create({
 			data: {
-				id: viewId,
 				postId,
 				userId,
 			},
