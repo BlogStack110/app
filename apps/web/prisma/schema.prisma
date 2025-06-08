@@ -9,7 +9,7 @@ datasource db {
 }
 
 model User {
-  id                     String          @id @unique
+  id                     String          @id @unique @default(uuid())
   name                   String
   email                  String          @unique
   emailVerified          Boolean
@@ -40,7 +40,7 @@ model User {
 }
 
 model Session {
-  id        String   @id @unique
+  id        String   @id @unique @default(uuid())
   userId    String
   user      User     @relation(fields: [userId], references: [id])
   token     String
@@ -52,7 +52,8 @@ model Session {
 }
 
 model Account {
-  id                   String    @id @unique
+  id String @id @unique @default(uuid())
+
   userId               String
   user                 User      @relation(fields: [userId], references: [id])
   accountId            String
@@ -69,7 +70,7 @@ model Account {
 }
 
 model verification {
-  id         String   @id @unique
+  id         String   @id @unique @default(uuid())
   identifier String
   value      String
   expiresAt  DateTime
@@ -84,7 +85,7 @@ model Connection {
 }
 
 model Post {
-  id           String     @id @unique
+  id           String     @id @unique @default(uuid())
   title        String
   content      String
   published    Boolean    @default(true)
@@ -101,7 +102,7 @@ model Post {
 }
 
 model Bookmark {
-  id        String   @id @unique
+  id        String   @id @unique @default(uuid())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
@@ -110,7 +111,7 @@ model Bookmark {
 }
 
 model Like {
-  id String @id @unique
+  id String @id @unique @default(uuid())
 
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
@@ -120,7 +121,7 @@ model Like {
 }
 
 model View {
-  id        String   @id @unique
+  id        String   @id @unique @default(uuid())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
@@ -129,7 +130,7 @@ model View {
 }
 
 model Comment {
-  id          String    @id @unique
+  id          String    @id @unique @default(uuid())
   user        User      @relation(fields: [userId], references: [id])
   userId      String
   comment     String
@@ -141,7 +142,7 @@ model Comment {
 }
 
 model Replies {
-  id        String   @id @unique
+  id        String   @id @unique @default(uuid())
   user      User     @relation(fields: [userId], references: [id])
   userId    String
   content   String
@@ -152,7 +153,7 @@ model Replies {
 }
 
 model Message {
-  id             String       @id @unique
+  id             String       @id @unique @default(uuid())
   content        String
   sender         User         @relation("SentMessages", fields: [senderId], references: [id])
   senderId       String
@@ -165,7 +166,7 @@ model Message {
 }
 
 model Conversation {
-  id        String    @id @unique
+  id        String    @id @unique @default(uuid())
   users     User[]    @relation("UserConversations")
   messages  Message[]
   updatedAt DateTime  @default(now())
@@ -173,7 +174,7 @@ model Conversation {
 }
 
 model FriendRequest {
-  id String @id @unique
+  id String @id @unique @default(uuid())
 
   sender     User     @relation("SentFriendRequests", fields: [senderId], references: [id])
   senderId   String
@@ -187,7 +188,7 @@ model FriendRequest {
 }
 
 model Friendship {
-  id String @id @unique
+  id String @id @unique @default(uuid())
 
   user1     User     @relation("FriendshipUser1", fields: [userId], references: [id])
   userId    String
