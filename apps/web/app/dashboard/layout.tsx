@@ -180,7 +180,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 				<DropdownMenuTrigger asChild>
 					<button className="flex items-center space-x-2 p-1 rounded-full hover:bg-white/10 transition-colors">
 						<Avatar className="h-8 w-8">
-							<AvatarImage src={user?.image || ""} alt={user?.name || ""} />
+							<AvatarImage src={user?.image?.toString() || ""} alt={user?.name || ""} />
 							<AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
 								{user?.name ? user.name.charAt(0).toUpperCase() : <User className="h-4 w-4" />}
 							</AvatarFallback>
