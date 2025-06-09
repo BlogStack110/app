@@ -2,7 +2,7 @@ import PublicFooter from "@/components/PublicFooter";
 import PublicNavbar from "@/components/PublicNavbar";
 import Link from "next/link";
 
-export default function About() {
+export default function Page() {
 	return (
 		<div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col">
 			<PublicNavbar />
