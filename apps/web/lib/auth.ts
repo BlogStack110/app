@@ -12,7 +12,7 @@ export const auth = betterAuth({
 		autoSignIn: false,
 		sendResetPassword: async ({ user, url, token }, request) => {
 			await sendMail({
-				from: 'shivaraj@blogstack.site',
+				from: 'shivaraj@updates.blogstack.site',
 				to: user.email,
 				subject: 'Reset your password',
 				html: `<h2><a href=${url}>Click the link to reset your password</a></h2>`,
@@ -22,7 +22,7 @@ export const auth = betterAuth({
 	emailVerification: {
 		sendVerificationEmail: async ({ user, url }, request) => {
 			await sendMail({
-				from: 'shivaraj@blogstack.site',
+				from: 'shivaraj@updates.blogstack.site',
 				to: user.email,
 				subject: 'Verify your email address',
 				html: `<h2><a href=${url}>Click the link to verify your email<a/></h2>`,
