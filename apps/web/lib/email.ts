@@ -22,5 +22,5 @@ export const sendMail = async (Data: MailData) => {
 	if (error) {
 		throw new Error(`Failed to send email: ${error.message}`);
 	}
-	console.log('Email sent successfully ID:', data);
+	console.log('Email sent successfully ID and recepient :', data + ' ' + Data.to);
 };
