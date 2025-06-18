@@ -1,11 +1,5 @@
-import nodemailer from 'nodemailer';
-import winston from 'winston';
+import { Resend } from 'resend';
 
-const logger = winston.createLogger({
-	level: 'debug',
-	format: winston.format.json(),
-	transports: [new winston.transports.Console()],
-});
 
 interface MailData {
 	from: string;
@@ -14,28 +8,19 @@ interface MailData {
 	html: string;
 }
 
-export const sendMail = async (data: MailData) => {
-	const transporter = nodemailer.createTransport({
-		service: process.env.MAIL_HOST,
-		auth: {
-			user: process.env.MAIL_USERNAME,
-			pass: process.env.MAIL_PASSWORD,
-		},
+const resend = new Resend(process.env.RESEND_API_KEY || '');
+
+export const sendMail = async (Data: MailData) => {
+
+	const { data, error } = await resend.emails.send({
+		from: Data.from,
+		to: Data.to,
+		subject: Data.subject,
+		html: Data.html,
 	});
 
-	const mailOptions = {
-		from: process.env.MAIL_USERNAME,
-		to: 'realenzimo@gmail.com',
-		subject: data.subject,
-		html: data.html,
-	};
-
-	logger.info(`Sending mail to - ${data.to}`);
-	transporter.sendMail(mailOptions, (error, info) => {
-		if (error) {
-			logger.error(error);
-		} else {
-			logger.info('Email sent: ' + info.response);
-		}
-	});
+	if (error) {
+		throw new Error(`Failed to send email: ${error.message}`);
+	}
+	console.log('Email sent successfully ID:', data);
 };
