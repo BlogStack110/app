@@ -37,6 +37,7 @@
     "resend": "^4.6.0",
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.1.4",
+    "uploadthing": "^7.7.2",
     "uuid": "^11.1.0",
     "winston": "^3.17.0"
   },
