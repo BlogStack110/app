@@ -248,7 +248,14 @@ export function CardsCreateAccount(mode: {
 							}}
 						/>
 						<p className='text-sm
-							'>Forgot password ? <strong className='underline cursor-pointer'> reset password</strong> </p>
+							'>Forgot password ? <strong
+								onClick={async () => {
+									const { data, error } = await authClient.forgetPassword({
+										email: email,
+										redirectTo: "/reset-password"
+									});
+								}}
+								className='underline cursor-pointer'> reset password</strong> </p>
 
 					</div>
 				</CardContent>
