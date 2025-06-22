@@ -37,6 +37,7 @@ model User {
   receivedFriendRequests FriendRequest[] @relation("ReceivedFriendRequests")
   friendshipsInitiated   Friendship[]    @relation("FriendshipUser1")
   friendshipsReceived    Friendship[]    @relation("FriendshipUser2")
+  Profile                Profile?
 }
 
 model Session {
@@ -199,4 +200,21 @@ model Friendship {
   updatedAt DateTime @updatedAt
 
   @@unique([userId, friendId])
+}
+
+model Profile {
+  id             String   @id @unique @default(uuid())
+  education      String?
+  location       String?
+  bio            String?
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id])
+  profession     String?
+  organization   String?
+  socialLinks    String[]
+  pronouns       String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  badges         String[]
+  doneOnboarding Boolean  @default(false)
 }
