@@ -16,11 +16,12 @@ import { Label } from './label';
 import { useState } from 'react';
 import { authClient } from '@/lib/auth-client';
 import { redirect, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export function CardsCreateAccount(mode: {
-	mode: 'signin' | 'signup' | 'verification';
+	mode: 'signin' | 'signup' | 'verification' | 'reset-password';
 }) {
-	const [Mode, setMode] = useState<'signin' | 'signup' | 'verification'>(
+	const [Mode, setMode] = useState<'signin' | 'signup' | 'verification' | 'reset-password'>(
 		mode.mode,
 	);
 	const [email, setEmail] = useState<string>('');
@@ -248,14 +249,12 @@ export function CardsCreateAccount(mode: {
 							}}
 						/>
 						<p className='text-sm
-							'>Forgot password ? <strong
-								onClick={async () => {
-									const { data, error } = await authClient.forgetPassword({
-										email: email,
-										redirectTo: "/reset-password"
-									});
-								}}
-								className='underline cursor-pointer'> reset password</strong> </p>
+							'>Forgot password ? <strong>
+								<Link
+									href='/auth/forgot-password'
+									className='underline cursor-pointer'>
+									reset password
+								</Link> </strong> </p>
 
 					</div>
 				</CardContent>
@@ -279,7 +278,7 @@ export function CardsCreateAccount(mode: {
 						</strong>
 					</p>
 				</CardFooter>
-			</Card>
+			</Card >
 		);
 	} else if (Mode === 'verification') {
 		return (

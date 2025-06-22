@@ -193,7 +193,11 @@ const BlogCard = (blog: DashboardBlogData) => {
 	}
 
 	return (
-		<article className="group bg-gradient-to-b from-[#111111] to-[#0c0c0c] rounded-xl overflow-hidden shadow-md border border-white/5 hover:border-blue-500/20 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 flex flex-col h-full relative before:absolute before:inset-0 before:rounded-xl before:border-2 before:border-transparent before:hover:border-blue-500/30 before:pointer-events-none before:transition-colors before:z-10">
+
+		<article className="group bg-gradient-to-b from-[#111111] to-[#0c0c0c] rounded-xl overflow-hidden shadow-md border-2 border-white/5 hover:border-blue-500/20
+			hover:shadow-xl hover:shadow-blue-500/5 transition-all
+			duration-299 flex flex-col h-full relative before:absolute before:inset-0 before:rounded-xl
+			before:border-2 before:border-transparent before:hover:border-blue-500/30 before:pointer-events-none before:transition-colors before:z-10">
 			<div className="relative h-48 sm:h-56 overflow-hidden">
 				{blog.imgUrl && !imageError ? (
 					<>
@@ -308,7 +312,7 @@ const BlogCard = (blog: DashboardBlogData) => {
 								}`}
 						>
 							<Heart
-								className={`w-4 h-4 ${isLiked ? "fill-red-400" : ""
+								className={`cursor-pointer w-4 h-4 ${isLiked ? "fill-red-400" : ""
 									} transition-all duration-300 ${isLiked ? "scale-110" : ""}`}
 							/>
 							<span className="text-xs font-medium">{likeCount}</span>
@@ -339,7 +343,6 @@ const BlogCard = (blog: DashboardBlogData) => {
 						>
 							<Share2 className="w-4 h-4 group-hover/share:scale-110 transition-transform" />
 						</button>
-
 						<button
 							onClick={toggleBookmark}
 							className={`p-2 rounded-lg transition-colors ${isBookmarked
