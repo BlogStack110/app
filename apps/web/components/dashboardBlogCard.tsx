@@ -341,7 +341,7 @@ const BlogCard = (blog: DashboardBlogData) => {
 							}}
 							className="p-2 rounded-lg text-white/60 hover:text-white/90 hover:bg-white/5 transition-colors group/share"
 						>
-							<Share2 className="w-4 h-4 group-hover/share:scale-110 transition-transform" />
+							<Share2 className="w-4 h-4 cursor-pointer group-hover/share:scale-110 transition-transform" />
 						</button>
 						<button
 							onClick={toggleBookmark}
@@ -351,7 +351,7 @@ const BlogCard = (blog: DashboardBlogData) => {
 								}`}
 						>
 							<Bookmark
-								className={`w-4 h-4 ${isBookmarked ? "fill-blue-400" : ""
+								className={`w-4 cursor-pointer h-4 ${isBookmarked ? "fill-blue-400" : ""
 									} transition-all duration-300 ${isBookmarked ? "scale-110" : "group-hover:scale-110"
 									}`}
 							/>
