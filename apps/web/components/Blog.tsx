@@ -234,6 +234,11 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 															type="text"
 															value={comment}
 															onChange={(e) => setComment(e.target.value)}
+															onKeyDown={(e) => {
+																if (e.key === 'Enter') {
+																	handleCommentSubmit();
+																}
+															}}
 															placeholder="Add a comment..."
 															className="w-full p-2 sm:p-3 pr-10 sm:pr-12 bg-[#0a0a0a] border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder:text-white/40 text-white text-sm"
 															disabled={isSubmitting}
