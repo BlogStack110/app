@@ -1,5 +1,5 @@
 import { Post } from "@/app/generated/prisma";
-
+import { z } from "zod";
 export interface BlogData {
 	id: string;
 	title: string;
@@ -111,11 +111,11 @@ export interface DashboardData {
 
 
 
-export interface PublishPayload{
-title?: string;
-content?: string;
-tags?: string;
-imgUrl?: string;
+export interface PublishPayload {
+	title?: string;
+	content?: string;
+	tags?: string;
+	imgUrl?: string;
 }
 
 export interface PublishResponse {
@@ -132,3 +132,13 @@ export interface PublishResponse {
 		imgUrl?: string;
 	};
 }
+
+
+
+export const PublishPayloadType = z.object({
+	title: z.string().min(3, "Title must be over 3 " + "characters").max(100, "Title must be under 100 characters"),
+	content: z.string().min(10, "Content must be over 10 characters"),
+	tags: z.string().array().min(1, "At least one tag is required").max(5, "Maximum 5 tags are allowed"),
+	imgUrl: z.string().url("Image URL must be a valid URL")
+})
+
