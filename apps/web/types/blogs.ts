@@ -108,3 +108,27 @@ export interface DashboardData {
 		};
 	};
 }
+
+
+
+export interface PublishPayload{
+title?: string;
+content?: string;
+tags?: string;
+imgUrl?: string;
+}
+
+export interface PublishResponse {
+	errors?: {
+		form?: string;
+		title?: string | null;
+		content?: string | null;
+		tags?: string | null;
+	};
+	values?: {
+		title?: string;
+		content?: string;
+		tags?: string;
+		imgUrl?: string;
+	};
+}
