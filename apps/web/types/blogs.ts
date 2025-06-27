@@ -114,19 +114,18 @@ export interface DashboardData {
 export interface PublishPayload {
 	title?: string;
 	content?: string;
-	tags?: string;
+	tags?: string[];
 	imgUrl?: string;
 }
 
 export interface PublishResponse {
 	errors?: {
-		form?: string;
 		title?: string | null;
 		content?: string | null;
 		tags?: string | null;
 	};
 	values?: {
-		title?: string;
+		title?: string[];
 		content?: string;
 		tags?: string;
 		imgUrl?: string;
@@ -136,9 +135,9 @@ export interface PublishResponse {
 
 
 export const PublishPayloadType = z.object({
-	title: z.string().min(3, "Title must be over 3 " + "characters").max(100, "Title must be under 100 characters"),
+	title: z.string().min(3, "Title must be over 3 characters").max(100, "Title must be under 100 characters"),
 	content: z.string().min(10, "Content must be over 10 characters"),
-	tags: z.string().array().min(1, "At least one tag is required").max(5, "Maximum 5 tags are allowed"),
+	tags: z.array(z.string()).min(1, "At least one tag is required"),
 	imgUrl: z.string().url("Image URL must be a valid URL")
 })
 
