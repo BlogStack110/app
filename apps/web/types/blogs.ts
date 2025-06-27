@@ -7,7 +7,7 @@ export interface BlogData {
 	description?: string; //for short glimpse of the content
 	authorId: string;
 	authorImgUrl: string;
-	publishDate: string;
+	publishDate: Date;
 	tags: string[];
 	imgUrl: string;
 	author: {
@@ -30,7 +30,7 @@ export interface RelatedPosts {
 	title: string;
 	authorId: string;
 	authorImgUrl: string;
-	publishDate: string;
+	publishDate: Date;
 	tags: string[];
 	imgUrl: string;
 	likes: {}[];
