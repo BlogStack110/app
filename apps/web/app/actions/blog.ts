@@ -2,6 +2,9 @@
 import { Redis } from '@upstash/redis';
 import { prisma } from '@/lib/db';
 import { getRedisConfig } from 'lib/url';
+import { PublishPayload, PublishPayloadType } from '@/types/blogs';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 
 export async function getBlogById(id: string) {
 	try {
@@ -158,4 +161,56 @@ export async function getRelatedPosts(id: string, tags: string[]) {
 		},
 	});
 	return relatedPosts;
+}
+
+
+export const puiblishBlog = async (payload: PublishPayload) => {
+	const session = await auth.api.getSession({
+		headers: await headers()
+	})
+	const ResponseError = {
+		title: '',
+		content: '',
+		tags: '',
+		imgUrl: '',
+	}
+	const parsedPayload = PublishPayloadType.safeParse(payload)
+	if (!parsedPayload.success) {
+		parsedPayload.error.issues.forEach(issue => {
+
+			if (issue.message.toLowerCase().includes('title')) {
+				ResponseError.title = issue.message;
+			}
+			else if (issue.message.toLowerCase().includes('content')) {
+				ResponseError.content = issue.message;
+			}
+			else if (issue.message.toLowerCase().includes('tags')) {
+				ResponseError.tags = issue.message;
+			}
+		})
+	}
+	else {
+		await prisma.post.create({
+			data: {
+				title: payload.title ?? "",
+				content: payload.content ?? "",
+				imgUrl: payload.imgUrl ?? "",
+				tags: payload.tags ?? [],
+				authorId: session?.user.id ?? "",
+				authorImgUrl: session?.user.image ?? "",
+			},
+		})
+	}
+
+	if (ResponseError.title || ResponseError.content || ResponseError.tags || ResponseError.imgUrl) {
+		return {
+			status: 'error',
+			error: ResponseError
+		}
+	}
+	else {
+		return {
+			status: 'success',
+		}
+	}
 }
