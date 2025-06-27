@@ -93,7 +93,7 @@ model Post {
   author       User       @relation(fields: [authorId], references: [id])
   authorId     String
   authorImgUrl String
-  publishDate  String
+  publishDate  DateTime   @default(now())
   tags         String[]
   bookmarks    Bookmark[]
   comments     Comment[]
