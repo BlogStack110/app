@@ -15,13 +15,11 @@ export default function Page() {
 	const [titleError, setTitleError] = useState<string | null>(null);
 	const [contentError, setContentError] = useState<string | null>(null);
 	const [tagsError, setTagsError] = useState<string | null>(null);
-	const [error, setError] = useState<string | null>(null)
 
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		setIsLoading(true)
-		setError(null)
 
 		try {
 
@@ -67,7 +65,6 @@ export default function Page() {
 		}
 		catch (err) {
 			console.error("Error submitting form:", err);
-			setError("Failed to submit the form. Please try again.");
 		} finally {
 			setIsLoading(false);
 		}
