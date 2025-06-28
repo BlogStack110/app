@@ -230,8 +230,15 @@ export default function Page() {
 										</div>
 									</div>
 								) : (
-									<div className="border-2 border-white/10 rounded-xl p-8">
+									<div className="rounded-xl ">
 										<UploadDropzone
+											appearance={{
+												container: "bg-transparent border-2 border-dashed border-white/10 rounded-xl p-18",
+												button: "bg-blue-500 text-white hover:bg-blue-600 rounded-xl px-6 py-3 font-medium transition-colors cursor-pointer",
+												label: "text-white/30 mb-2",
+												allowedContent: "text-white/30 text-sm",
+
+											}}
 											className="bg-transparent ut-button:bg-blue-500 ut-button:text-white ut-button:hover:bg-blue-600 ut-button:rounded-xl ut-button:px-6 ut-button:py-3 ut-button:font-medium ut-button:transition-colors"
 											endpoint="imageUploader"
 											onClientUploadComplete={(res: any) => {
