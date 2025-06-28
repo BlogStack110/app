@@ -109,3 +109,9 @@ export const getBlogDetails = async (id: string) => {
 		return response;
 	}
 };
+
+
+
+
+
+
