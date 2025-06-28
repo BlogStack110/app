@@ -101,7 +101,6 @@ model Post {
   likes        Like[]
   views        View[]
 }
-
 model Bookmark {
   id        String   @id @unique @default(uuid())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
