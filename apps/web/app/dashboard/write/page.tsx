@@ -1,10 +1,76 @@
+"use client";
 import RichTextEditor from "@/components/RichTextEditor";
-import { ArrowLeft, Type } from "lucide-react";
+import { UploadDropzone } from "@/lib/uploadthing";
+import { ArrowLeft, Tag, Type } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+
+
 
 export default function Page() {
+
+	const [isLoading, setIsLoading] = useState<boolean>(false)
+
+	const [error, setError] = useState<string | null>(null)
+	const [actionData, setActionData] = useState<{
+		errors?: { title?: string; content?: string; tags?: string; imgUrl?: string };
+		success?: boolean;
+		message?: string;
+	}>({});
+
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+		setIsLoading(true)
+		setError(null)
+
+		try {
+			const formData = new FormData(e.currentTarget)
+			// Convert FormData to a plain object
+			const data = {
+				title: formData.get('title') as string,
+				content: formData.get('content') as string,
+				imgUrl: formData.get('imgUrl') as string,
+				tags: formData.get('tags') ?
+					(formData.get('tags') as string).split(',').map(tag => tag.trim()) :
+					[]
+			}
+
+			const response = await fetch('/api/blog', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',  // Fixed: was 'contentType'
+				},
+				body: JSON.stringify(data),  // Convert to JSON string
+			})
+			if (!response.ok) {
+				throw new Error('Failed to submit the data. Please try again.')
+			}
+
+
+		}
+		catch (err) {
+			console.error("Error submitting form:", err);
+			setError("Failed to submit the form. Please try again.");
+		} finally {
+			setIsLoading(false);
+		}
+	}
+
+	const [url, setUrl] = useState<string>("");
+	const [content, setContent] = useState<string>("");
+	const [title, setTitle] = useState<string>("");
+	const [tags, setTags] = useState<string[]>([]);
+
+
+
+	const handleContentChange = (newContent: string) => {
+		// Ensure we're not trying to parse JSON here
+		setContent(newContent || "");
+	};
+
 	return (
-		<div className="min-h-screen bg-[#0a0a0a] text-white p-6">
+		<div className="min-h-screen bg-[#0a0a0a] text-white p-6" >
 			<div className="">
 				{/* Header */}
 				<div className="mb-8">
@@ -27,7 +93,7 @@ export default function Page() {
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 					{/* Form Section */}
 					<div className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-8">
-						<Form method="POST" className="space-y-6">
+						<form method="POST" className="space-y-6" onSubmit={handleSubmit}>
 							<div>
 								<label className="block text-sm font-medium text-white/80 mb-2">
 									Blog Title
@@ -37,7 +103,7 @@ export default function Page() {
 									<input
 										type="text"
 										name="title"
-										value={""}
+										value={title}
 										onChange={(e) => setTitle(e.target.value)}
 										placeholder="Building a Modern Web Application with Remix and Prisma"
 										className={`w-full pl-10 pr-4 py-3 bg-white/5 border ${actionData?.errors?.title
@@ -46,11 +112,11 @@ export default function Page() {
 											} rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/20 text-white placeholder:text-white/40 transition-all`}
 									/>
 								</div>
-								{/* {actionData?.errors?.title && ( */}
-								{/* 	<p className="mt-1 text-red-500 text-sm"> */}
-								{/* 		{actionData.errors.title} */}
-								{/* 	</p> */}
-								{/* )} */}
+								{actionData?.errors?.title && (
+									<p className="mt-1 text-red-500 text-sm">
+										{actionData.errors.title}
+									</p>
+								)}
 							</div>
 
 							<div>
@@ -64,11 +130,12 @@ export default function Page() {
 										}`}
 								>
 									<RichTextEditor
-										onChange={() => { }}
-										initialContent={""}
+										onChange={handleContentChange}
+										initialContent={content}
 									/>
 								</div>
-								<input type="hidden" name="content" value={content} />
+								<input type="hidden" name="content" value={content}
+								/>
 								{actionData?.errors?.content && (
 									<p className="mt-1 text-red-500 text-sm">
 										{actionData.errors.content}
@@ -86,7 +153,7 @@ export default function Page() {
 										type="text"
 										name="tags"
 										value={tags}
-										onChange={(e) => setTags(e.target.value)}
+										onChange={(e) => setTags(e.target.value.toLowerCase().split(",").map(tag => tag.trim()))}
 										placeholder="Web Development, Remix, Prisma, TypeScript, Full Stack, Tutorial"
 										className={`w-full pl-10 pr-4 py-3 bg-white/5 border ${actionData?.errors?.tags
 											? "border-red-500/50"
@@ -107,12 +174,13 @@ export default function Page() {
 							<input type="hidden" name="imgUrl" value={url} />
 
 							<button
+								disabled={isLoading}
 								type="submit"
 								className="w-full bg-blue-500 text-white py-3 px-6 rounded-xl font-medium hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/20"
 							>
-								Publish Blog
+								{isLoading ? "Submitting..." : "Publish Blog"}
 							</button>
-						</Form>
+						</form>
 					</div>
 
 					{/* Image Upload Section */}
@@ -128,9 +196,11 @@ export default function Page() {
 							<div className="relative">
 								{url ? (
 									<div className="relative group">
-										<img
+										<Image
 											src={url}
 											alt="Preview"
+											height={1000}
+											width={1000}
 											className="w-full h-64 object-cover rounded-xl"
 										/>
 										<div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center">
@@ -144,18 +214,18 @@ export default function Page() {
 										</div>
 									</div>
 								) : (
-									<div className="border-2 border-dashed border-white/10 rounded-xl p-8">
-										<UploadDropzo
+									<div className="border-2 border-white/10 rounded-xl p-8">
+										<UploadDropzone
 											className="bg-transparent ut-button:bg-blue-500 ut-button:text-white ut-button:hover:bg-blue-600 ut-button:rounded-xl ut-button:px-6 ut-button:py-3 ut-button:font-medium ut-button:transition-colors"
 											endpoint="imageUploader"
-											onClientUploadComplete={(res) => {
+											onClientUploadComplete={(res: any) => {
 												console.log("Files: ", res[0].url);
 												setUrl(res[0].url);
 											}}
 											onUploadError={(error: Error) => {
 												console.error("Upload error:", error);
 											}}
-											onUploadBegin={(name) => {
+											onUploadBegin={(name: string) => {
 												console.log("Uploading: ", name);
 											}}
 										/>
@@ -177,6 +247,6 @@ export default function Page() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</div >
 	)
 }
