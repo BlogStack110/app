@@ -1,6 +1,7 @@
 "use client";
 import RichTextEditor from "@/components/RichTextEditor";
 import { UploadDropzone } from "@/lib/uploadthing";
+import { PublishPayloadType } from "@/types/blogs";
 import { ArrowLeft, Tag, Type } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,13 +12,11 @@ import { useState } from "react";
 export default function Page() {
 
 	const [isLoading, setIsLoading] = useState<boolean>(false)
-
+	const [titleError, setTitleError] = useState<string | null>(null);
+	const [contentError, setContentError] = useState<string | null>(null);
+	const [tagsError, setTagsError] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null)
-	const [actionData, setActionData] = useState<{
-		errors?: { title?: string; content?: string; tags?: string; imgUrl?: string };
-		success?: boolean;
-		message?: string;
-	}>({});
+
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -25,6 +24,8 @@ export default function Page() {
 		setError(null)
 
 		try {
+
+
 			const formData = new FormData(e.currentTarget)
 			// Convert FormData to a plain object
 			const data = {
@@ -34,6 +35,21 @@ export default function Page() {
 				tags: formData.get('tags') ?
 					(formData.get('tags') as string).split(',').map(tag => tag.trim()) :
 					[]
+			}
+
+			const parsedData = PublishPayloadType.safeParse(data);
+
+			if (!parsedData.success) {
+				parsedData.error.errors.forEach((error) => {
+					if (error.path.includes('title')) {
+						setTitleError(error.message);
+					} else if (error.path.includes('content')) {
+						setContentError(error.message);
+					} else if (error.path.includes('tags')) {
+						setTagsError(error.message);
+					}
+				});
+				return;
 			}
 
 			const response = await fetch('/api/blog', {
@@ -61,6 +77,7 @@ export default function Page() {
 	const [content, setContent] = useState<string>("");
 	const [title, setTitle] = useState<string>("");
 	const [tags, setTags] = useState<string[]>([]);
+
 
 
 
@@ -106,17 +123,18 @@ export default function Page() {
 										value={title}
 										onChange={(e) => setTitle(e.target.value)}
 										placeholder="Building a Modern Web Application with Remix and Prisma"
-										className={`w-full pl-10 pr-4 py-3 bg-white/5 border ${actionData?.errors?.title
+										className={`w-full pl-10 pr-4 py-3 bg-white/5 border ${titleError
 											? "border-red-500/50"
 											: "border-white/10"
 											} rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/20 text-white placeholder:text-white/40 transition-all`}
 									/>
 								</div>
-								{actionData?.errors?.title && (
-									<p className="mt-1 text-red-500 text-sm">
-										{actionData.errors.title}
-									</p>
-								)}
+								{titleError
+									&& (
+										<p className="mt-1 text-red-500 text-sm">
+											{titleError}
+										</p>
+									)}
 							</div>
 
 							<div>
@@ -124,8 +142,7 @@ export default function Page() {
 									Content
 								</label>
 								<div
-									className={`${actionData?.errors?.content
-										? "border border-red-500/50 rounded-xl"
+									className={`${contentError ? "border border-red-500/50 rounded-xl"
 										: ""
 										}`}
 								>
@@ -136,9 +153,9 @@ export default function Page() {
 								</div>
 								<input type="hidden" name="content" value={content}
 								/>
-								{actionData?.errors?.content && (
+								{contentError && (
 									<p className="mt-1 text-red-500 text-sm">
-										{actionData.errors.content}
+										{contentError}
 									</p>
 								)}
 							</div>
@@ -155,8 +172,7 @@ export default function Page() {
 										value={tags}
 										onChange={(e) => setTags(e.target.value.toLowerCase().split(",").map(tag => tag.trim()))}
 										placeholder="Web Development, Remix, Prisma, TypeScript, Full Stack, Tutorial"
-										className={`w-full pl-10 pr-4 py-3 bg-white/5 border ${actionData?.errors?.tags
-											? "border-red-500/50"
+										className={`w-full pl-10 pr-4 py-3 bg-white/5 border ${tagsError ? "border-red-500/50"
 											: "border-white/10"
 											} rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/20 text-white placeholder:text-white/40 transition-all`}
 									/>
@@ -164,9 +180,9 @@ export default function Page() {
 								<p className="text-sm text-white/40 mt-1">
 									Separate tags with commas
 								</p>
-								{actionData?.errors?.tags && (
+								{tagsError && (
 									<p className="mt-1 text-red-500 text-sm">
-										{actionData.errors.tags}
+										{tagsError}
 									</p>
 								)}
 							</div>
