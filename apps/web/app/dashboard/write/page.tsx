@@ -238,9 +238,14 @@ export default function Page() {
 											}}
 											className="bg-transparent ut-button:bg-blue-500 ut-button:text-white ut-button:hover:bg-blue-600 ut-button:rounded-xl ut-button:px-6 ut-button:py-3 ut-button:font-medium ut-button:transition-colors"
 											endpoint="imageUploader"
-											onClientUploadComplete={(res: any) => {
-												console.log("Files: ", res[0].url);
-												setUrl(res[0].url);
+											onClientUploadComplete={(res: {
+												name: string;
+												size: number;
+												key: string;
+												url: string;
+											}[]) => {
+												console.log("Files: ", res[0]?.url);
+												setUrl(res[0]?.url ?? "");
 											}}
 											onUploadError={(error: Error) => {
 												console.error("Upload error:", error);
