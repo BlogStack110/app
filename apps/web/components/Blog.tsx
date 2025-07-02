@@ -116,11 +116,11 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 						</div>
 						<div className="text-white/70 flex items-center text-xs sm:text-sm">
 							<Heart className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-							<span>{40} likes</span>
+							<span>{blog?.likes.length} likes</span>
 						</div>
 						<div className="text-white/70 flex items-center text-xs sm:text-sm">
 							<MessageCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-							<span>{90} comments</span>
+							<span>{blog?.comments.length} comments</span>
 						</div>
 					</div>
 				</div>
