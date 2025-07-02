@@ -32,7 +32,6 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 	const user = useSession().data?.user
 	const [imageError, setImageError] = useState(false);
 	const [comment, setComment] = useState<string>('');
-	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 	const session = useSession();
 	const [commentState, setCommentState] = useState<'idle' | 'submitting' | 'loading'>('idle');
 
@@ -51,11 +50,11 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 	// Handle comment submission with loading state
 	const handleCommentSubmit = async () => {
 		if (!comment.trim()) return;
-		setIsSubmitting(true);
+		setCommentState('submitting');
 		await pushComment(blog?.id ?? "", user?.id ?? '', comment)
 		setTimeout(() => {
 			setComment("");
-			setIsSubmitting(false);
+			setCommentState('idle');
 		}, 500);
 	};
 
@@ -113,7 +112,7 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 						<div className="text-white/70 flex items-center text-xs sm:text-sm">
 							<Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
 
-							<span>{formatDate(blog?.publishDate ?? new Date().toString())}</span>
+							<span>{formatDate(blog?.publishDate.toString() ?? new Date().toString())}</span>
 						</div>
 						<div className="text-white/70 flex items-center text-xs sm:text-sm">
 							<Heart className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
@@ -241,16 +240,16 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 															}}
 															placeholder="Add a comment..."
 															className="w-full p-2 sm:p-3 pr-10 sm:pr-12 bg-[#0a0a0a] border border-white/10 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder:text-white/40 text-white text-sm"
-															disabled={isSubmitting}
+															disabled={commentState === 'submitting'}
 														/>
 														<button
 															type="submit"
-															disabled={!comment || isSubmitting}
+															disabled={!comment || commentState === 'submitting'}
 															onClick={handleCommentSubmit}
-															className={`p-2 rounded-full size-fit -translate-x-10 translate-y-1 cursor-pointer ${comment && !isSubmitting
+															className={`p-2 rounded-full size-fit -translate-x-10 translate-y-1 cursor-pointer ${comment && commentState !== 'submitting'
 																? "text-blue-500 hover:bg-white/5"
 																: "text-white/30"
-																} transition-colors ${isSubmitting ? "animate-pulse" : ""
+																} transition-colors ${commentState === 'submitting' ? "animate-pulse" : ""
 																}`}
 														>
 															<SendHorizontal className="w-4 h-4 sm:w-5 sm:h-5 " />
