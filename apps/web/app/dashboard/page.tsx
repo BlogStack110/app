@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import { Plus, TrendingUp, Bookmark, Clock } from 'lucide-react';
 import BlogCard from '@/components/dashboardBlogCard';
@@ -47,7 +46,6 @@ export const metadata: Metadata = {
 		},
 	},
 };
-
 export default async function Page({ searchParams }: { searchParams: { page?: string } }) {
 	const page = searchParams.page ? parseInt(searchParams.page, 10) : 1;
 	const session = await authClient.getSession();
@@ -127,7 +125,6 @@ What do you think? Do you guys like his trend?ded-xl shadow border border-white/
 						View all <span className="ml-1">→</span>
 					</Link>
 				</div>
-
 				{blogs.length === 0 ? (
 					<div className="bg-gradient-to-br from-[#111111] to-[#0a0a0a] rounded-2xl border border-white/5 overflow-hidden shadow-lg">
 						<div className="px-6 py-12 md:py-16 flex flex-col items-center text-center">
