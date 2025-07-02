@@ -112,7 +112,7 @@ const Blog = ({ blog, relatedPosts }: BlogDetails) => {
 						<div className="text-white/70 flex items-center text-xs sm:text-sm">
 							<Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
 
-							<span>{formatDate(blog?.publishDate.toString() ?? new Date().toString())}</span>
+							<span>{formatDate(blog?.publishDate.toString() ?? "")}</span>
 						</div>
 						<div className="text-white/70 flex items-center text-xs sm:text-sm">
 							<Heart className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
