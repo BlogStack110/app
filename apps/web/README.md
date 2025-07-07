@@ -1,6 +1,7 @@
 # TODO
 ## interactions
-- [ ] add comments logic
+- [x] add comments logic
+- [ ] add replies logic
 - [ ] add likes logic
 - [ ] add views count display and update
 - [ ] chatting logic
