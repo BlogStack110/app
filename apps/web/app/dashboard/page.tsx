@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Plus, TrendingUp, Bookmark, Clock } from 'lucide-react';
 import BlogCard from '@/components/dashboardBlogCard';
@@ -46,6 +47,7 @@ export const metadata: Metadata = {
 		},
 	},
 };
+
 export default async function Page({ searchParams }: { searchParams: { page?: string } }) {
 	const page = searchParams.page ? parseInt(searchParams.page, 10) : 1;
 	const session = await authClient.getSession();
@@ -78,11 +80,7 @@ export default async function Page({ searchParams }: { searchParams: { page?: st
 				</Link>
 
 				<Link href="/dashboard/bookmarks" className="block">
-					<div className="bg-[#111111] p-5 md:p-6 rounBeing a guy who loves the cinematic art in any form, seeing this trend getting this scale of traction is simply sad. I have profound respect for the studio and I was amazed by their work when I discovered movies like Castle in The Sky, Grave of the Fireflies, Spirited away, etc. And when I got to know how these movies are made and how much manual effort it takes to produce them, my appreciation only increased. But here comes some AI tool that can replicate this in a matter of minutes. This is no less than a slap on the faces of artists who spend hours imagining and creating something like this.
-
-I am not against AI, or advancements it is making. But there must be a limit to this. You can cut a fruit as well as stab someone with a kitchen knife. Right now, it is the latter happening with the use of AI tools just for cheap social media points. Sad state of affairs.
-
-What do you think? Do you guys like his trend?ded-xl shadow border border-white/5 hover:border-green-500/30 hover:bg-[#131313] transition-all">
+					<div className="bg-[#111111] p-5 md:p-6 rounded-xl shadow border border-white/5 hover:border-green-500/30 hover:bg-[#131313] transition-all">
 						<div className="flex items-center space-x-4">
 							<div className="p-3 bg-green-500/10 rounded-xl">
 								<Bookmark className="w-5 h-5 md:w-6 md:h-6 text-green-400" />
@@ -125,6 +123,7 @@ What do you think? Do you guys like his trend?ded-xl shadow border border-white/
 						View all <span className="ml-1">→</span>
 					</Link>
 				</div>
+
 				{blogs.length === 0 ? (
 					<div className="bg-gradient-to-br from-[#111111] to-[#0a0a0a] rounded-2xl border border-white/5 overflow-hidden shadow-lg">
 						<div className="px-6 py-12 md:py-16 flex flex-col items-center text-center">
