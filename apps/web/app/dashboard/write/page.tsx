@@ -191,7 +191,7 @@ export default function Page() {
 								type="submit"
 								className="w-full bg-blue-500 text-white py-3 px-6 rounded-xl font-medium hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/20"
 							>
-								{isLoading ? "Submitting..." : "Publish Blog"}
+								{isLoading ? "Publishing..." : "Publish Blog"}
 							</button>
 						</form>
 					</div>
