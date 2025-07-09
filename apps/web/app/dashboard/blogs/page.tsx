@@ -28,10 +28,10 @@ export default async function Page({ searchParams }: { searchParams: { search?: 
 			{/* Header Section */}
 			<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
 				<div>
-					<h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+					<h1 className="text-3xl font-bold text-white mb-2">
 						{searchQuery ? `Search Results for "${searchQuery}"` : "All Blogs"}
 					</h1>
-					<p className="text-gray-600 dark:text-white/60">
+					<p className="text-white/60">
 						{searchQuery
 							? `Found ${blogs?.length} posts matching your search`
 							: "Discover and explore amazing blog posts"}
@@ -55,7 +55,7 @@ export default async function Page({ searchParams }: { searchParams: { search?: 
 							placeholder="Search blogs..."
 							defaultValue={searchQuery || ""}
 							value={searchQuery || ""}
-							className="w-full px-4 py-3 pl-12 rounded-xl bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-white/5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+							className="w-full px-4 py-6 pl-12 rounded-xl bg-[#0a0a0a] border  border-white/5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
 						/>
 						<button
 							className="absolute left-4 top-1/2 -translate-y-1/2"
@@ -64,7 +64,7 @@ export default async function Page({ searchParams }: { searchParams: { search?: 
 						</button>
 					</div>
 				</div>
-				<Button className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-white/5 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+				<Button className="inline-flex items-center space-x-2 px-6 py-6 rounded-xl bg-[#0a0a0a] border border-white/5 text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
 					<Filter className="w-5 h-5" />
 					<span>Filter</span>
 				</Button>
