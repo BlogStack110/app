@@ -29,7 +29,7 @@ export default async function Page({ searchParams }: { searchParams: { search?: 
 			<div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
 				<div>
 					<h1 className="text-3xl font-bold text-white mb-2">
-						{searchQuery ? `Search Results for "${searchQuery}"` : "All Blogs"}
+						{searchQuery ? (<div className="flex gap-1">Search results for <p className="text-blue-600">"</p><p className="underline decoration-blue-600">{searchQuery}</p><p className="text-blue-600 ">"</p></div>) : "All Blogs"}
 					</h1>
 					<p className="text-white/60">
 						{searchQuery
@@ -38,7 +38,7 @@ export default async function Page({ searchParams }: { searchParams: { search?: 
 					</p>
 				</div>
 				<Link
-					href="/dashboard/blog/solo"
+					href="/dashboard/write"
 					className="inline-flex items-center space-x-2 bg-blue-500 text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-600 transition-colors"
 				>
 					<Plus className="w-5 h-5" />
