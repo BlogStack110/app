@@ -6,7 +6,7 @@ import { DashboardData } from '@/types/blogs';
 import { headers } from 'next/headers';
 
 
-export async function getDashboardData(page: number = 1): Promise<DashboardData> {
+export async function getDashboardData(page: number): Promise<DashboardData> {
 	try {
 
 		const session = await auth.api.getSession({
