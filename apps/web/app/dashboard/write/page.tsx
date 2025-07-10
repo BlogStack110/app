@@ -63,7 +63,7 @@ export default function Page() {
 			}
 			else {
 				alert("Blog published successfully!");
-				router.push("/dashboard")
+				router.push(`/blog/${JSON.parse(await response.text()).postId}`);
 			}
 
 		}

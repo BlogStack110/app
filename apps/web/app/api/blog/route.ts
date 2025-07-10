@@ -50,8 +50,8 @@ export async function POST(req: Request) {
 
 		return NextResponse.json(
 			{ message: 'Blog post published successfully', postId: post.id },
-			{ status: 201 }
-		);
+			{ status: 200 }
+		)
 
 	} catch (error) {
 		console.error("Error publishing blog post:", error);
