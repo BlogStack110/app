@@ -150,7 +150,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 				{
 					name: "Write Blog",
 					icon: <NotebookPen className="h-5 w-5" />,
-					path: "/dashboard/blog/solo",
+					path: "/dashboard/write",
 				},
 			],
 		},
