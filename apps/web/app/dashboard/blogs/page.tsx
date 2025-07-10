@@ -103,33 +103,36 @@ export default async function Page({ searchParams }: { searchParams: { search?: 
 			</div>
 
 			{/* Pagination */}
-			{
-				blogs ? blogs?.length > 0 && pagination?.totalPages > 1 && (
-					<div className="flex justify-center items-center space-x-2 mt-8">
-						<button
-							disabled={!pagination?.hasPrevPage}
-							className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${pagination.hasPrevPage
-								? "bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 border border-gray-200 dark:border-white/5"
-								: "bg-white dark:bg-[#0a0a0a] text-gray-400 dark:text-white/40 cursor-not-allowed border border-gray-200 dark:border-white/5"
-								}`}
-						>
+			{blogs?.length > 0 && pagination?.totalPages > 1 && (
+				<div className="flex justify-center items-center space-x-2 mt-6 md:mt-8">
+					<button
+						className={`px-3 py-2 md:px-4 md:py-2 rounded-lg text-sm font-medium transition-colors ${pagination.hasPrevPage
+							? "bg-[#111111] text-white hover:bg-[#1a1a1a] border border-white/10 cursor-pointer"
+							: "bg-[#111111] text-white/40 cursor-not-allowed border border-white/5"
+							}`}
+						disabled={!pagination.hasPrevPage}
+					>
+
+						<a href={` ${(Number(pagination.currentPage) - 1) > 1 ? ('/dashboard/blogs?page=' + Number(pagination.currentPage - 1)) : "/dashboard/blogs"}`}>
 							Previous
-						</button>
-						<span className="px-4 py-2 text-sm font-medium text-gray-900 dark:text-white">
-							Page {pagination?.currentPage} of {pagination?.totalPages}
-						</span>
-						<button
-							disabled={!pagination?.hasNextPage}
-							className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${pagination.hasNextPage
-								? "bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/5 border border-gray-200 dark:border-white/5"
-								: "bg-white dark:bg-[#0a0a0a] text-gray-400 dark:text-white/40 cursor-not-allowed border border-gray-200 dark:border-white/5"
-								}`}
-						>
+						</a>
+					</button>
+					<span className="px-3 py-2 md:px-4 md:py-2 text-sm font-medium text-white">
+						Page {pagination.currentPage} of {pagination.totalPages}
+					</span>
+					<button
+						className={`px-3 py-2 md:px-4 md:py-2 rounded-lg text-sm font-medium transition-colors ${pagination.hasNextPage
+							? "bg-[#111111] text-white hover:bg-[#1a1a1a] border border-white/10 cursor-pointer"
+							: "bg-[#111111] text-white/40 cursor-not-allowed border border-white/5"
+							}`}
+						disabled={!pagination.hasNextPage}
+					>
+						<a href={`/dashboard/blogs?page=${pagination.currentPage + 1}`}>
 							Next
-						</button>
-					</div>
-				) : null
-			}
+						</a>
+					</button>
+				</div>
+			)}
 		</div >
 	);
 }
