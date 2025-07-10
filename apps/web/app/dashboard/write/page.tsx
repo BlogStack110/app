@@ -5,6 +5,7 @@ import { PublishPayloadType } from "@/types/blogs";
 import { ArrowLeft, Tag, Type } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
@@ -15,7 +16,7 @@ export default function Page() {
 	const [titleError, setTitleError] = useState<string | null>(null);
 	const [contentError, setContentError] = useState<string | null>(null);
 	const [tagsError, setTagsError] = useState<string | null>(null);
-
+	const router = useRouter()
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -60,7 +61,10 @@ export default function Page() {
 			if (!response.ok) {
 				throw new Error('Failed to submit the data. Please try again.')
 			}
-
+			else {
+				alert("Blog published successfully!");
+				router.push("/dashboard")
+			}
 
 		}
 		catch (err) {
