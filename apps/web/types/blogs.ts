@@ -138,6 +138,6 @@ export const PublishPayloadType = z.object({
 	title: z.string().min(3, "Title must be over 3 characters").max(100, "Title must be under 100 characters"),
 	content: z.string().min(10, "Content must be over 10 characters"),
 	tags: z.array(z.string()).min(1, "At least one tag is required"),
-	imgUrl: z.string().url("Image URL must be a valid URL").optional()
+	imgUrl: z.string().optional()
 })
 
