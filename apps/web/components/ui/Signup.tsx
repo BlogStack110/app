@@ -55,11 +55,13 @@ export function CardsCreateAccount(mode: {
 	const onSigninGithub = async () => {
 		const { data, error } = await authClient.signIn.social({
 			provider: 'github',
+			callbackURL: '/',
 		});
 	};
 	const onSigninGoogle = async () => {
 		const { data, error } = await authClient.signIn.social({
 			provider: 'google',
+			callbackURL: '/'
 		});
 	};
 	const onSignupEmail = async () => {
@@ -92,11 +94,13 @@ export function CardsCreateAccount(mode: {
 	const onSignupGithub = async () => {
 		const { data, error } = await authClient.signIn.social({
 			provider: 'github',
+			callbackURL: '/',
 		});
 	};
 	const onSignupGoogle = async () => {
 		const { data, error } = await authClient.signIn.social({
 			provider: 'google',
+			callbackURL: '/',
 		});
 	};
 	if (Mode === 'signup') {
