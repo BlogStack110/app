@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { Menu, X, User, LogOut } from 'lucide-react';
+import { Menu, X, User, LogOut, PlusIcon, Bell, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { authClient, useSession } from '../lib/auth-client';
 import { Button } from './ui/button';
@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog';
 import { CardsCreateAccount } from './ui/Signup';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { Input } from './ui/input';
 export default function PublicNavbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -29,115 +30,59 @@ export default function PublicNavbar() {
 	}, [session]);
 
 	return (
-		<nav className="bg-[#0a0a0a] border-b border-white/10">
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<nav className="bg-neutral-900 max-w-8xl self-center border-b py-1 border-white/10 fixed z-10 w-full">
+			<div className=" mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between h-16">
 					<div className="flex items-center">
-						<Link href="/" className="flex-shrink-0 flex items-center">
-							<span className="text-white font-bold text-xl">BlogStack</span>
+						<Link href="/" className="">
+							<span className="text-white font-bold text-2xl">BlogStack</span>
 						</Link>
-						<div className="hidden md:ml-6 md:flex md:space-x-8">
-							<Link
-								href="/blog"
-								className="text-white/80 hover:text-white border-transparent hover:border-white/80 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-							>
-								Explore
-							</Link>
-							<Link
-								href="/blog?tag=Technology"
-								className="text-white/80 hover:text-white border-transparent hover:border-white/80 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-							>
-								Technology
-							</Link>
-							<Link
-								href="/blog?tag=Design"
-								className="text-white/80 hover:text-white border-transparent hover:border-white/80 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-							>
-								Design
-							</Link>
-							<Link
-								href="/blog?tag=Business"
-								className="text-white/80 hover:text-white border-transparent hover:border-white/80 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-							>
-								Business
-							</Link>
-							<Link
-								href="/team"
-								className="text-white/80 hover:text-white border-transparent hover:border-white/80 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-							>
-								Team
-							</Link>
-						</div>
 					</div>
-					<div className="hidden md:ml-6 md:flex md:items-center">
+
+					<div className="relative flex-1 max-w-sm mt-2">
+						<Input
+							type="text"
+							name="search"
+							placeholder="Search blogs..."
+							defaultValue={""}
+							className="w-full px-4 py-6 pl-12 rounded-xl border border-white/5
+							text-white placeholder-white/40 focus:outline-none focus:ring-transparent  focus:bg-transparent transition-all"
+						/>
+						<button
+							className="absolute left-4 top-1/2 -translate-y-1/2"
+						>
+							<Search className="w-5 h-5 text-gray-400 dark:text-white/40 -translate-y-1 cursor-pointer" />
+						</button>
+					</div>					<div className="hidden md:ml-6 md:flex md:items-center">
 						{isLoaded && user ? (
-							<div className="relative">
+							<div className="relative flex items-center space-x-4">
+								<div className='h-11 w-12 shadow-neutral-600 shadow-sm bg-neutral-800 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-900 transition-colors cursor-pointer'>
+									<Bell className='h-5 w-5 fill-neutral-500 text-neutral-500' />
+								</div>
+								<div className='h-11 w-12 shadow-neutral-600 shadow-sm bg-neutral-800 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-900 transition-colors cursor-pointer'>
+									<PlusIcon className='h-5 w-5 text-neutral-500' />
+								</div>
+
 								<button
 									onClick={toggleProfile}
 									className="flex items-center space-x-3 text-white focus:outline-none"
 								>
-									<div className="flex items-center space-x-3">
+									<div className="flex items-center space-x-3 border border-neutral-500 rounded-md">
 										{user.image ? (
 											<Image
 												height={1000}
 												width={1000}
 												src={user.image.toString()}
 												alt={user.name || 'User'}
-												className="w-8 h-8 rounded-full border border-white/20"
+												className="w-12 h-11 rounded-md border cursor-pointer border-white/20"
 											/>
 										) : (
 											<div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center border border-white/20">
 												<User className="w-4 h-4 text-white" />
 											</div>
 										)}
-										<span className="text-sm font-medium text-white">
-											{user.name}
-										</span>
 									</div>
 								</button>
-
-								{/* User dropdown menu */}
-								{isProfileOpen && (
-									<div className="absolute right-0 mt-2 w-48 bg-[#111111] border border-white/10 rounded-lg shadow-lg py-1 z-10"
-										onKeyDown={(e) => {
-											if (e.key === 'Escape') {
-												setIsProfileOpen(false);
-											}
-										}
-										}
-									>
-										<Link
-											href="/dashboard"
-											className="block px-4 py-2 text-sm text-white hover:bg-white/10"
-											onClick={() => setIsProfileOpen(false)}
-										>
-											Dashboard
-										</Link>
-										<Link
-											href="/dashboard/myblogs"
-											className="block px-4 py-2 text-sm text-white hover:bg-white/10"
-											onClick={() => setIsProfileOpen(false)}
-										>
-											My Blogs
-										</Link>
-										<Link
-											href="/dashboard/bookmarks"
-											className="block px-4 py-2 text-sm text-white hover:bg-white/10"
-											onClick={() => setIsProfileOpen(false)}
-										>
-											Bookmarks
-										</Link>
-										<div
-											className="px-4 py-2 cursor-pointer text-sm text-red-400 hover:bg-white/10 border-t border-white/10 mt-1 pt-1 flex items-center"
-											onClick={async () => {
-												await authClient.signOut();
-												setIsProfileOpen(false);
-											}}
-										>
-											<LogOut className="w-4 h-4 mr-2" /> Sign out
-										</div>
-									</div>
-								)}
 							</div>
 						) : (
 							<div className="flex items-center space-x-4">
@@ -188,43 +133,6 @@ export default function PublicNavbar() {
 
 			{/* Mobile menu, show/hide based on menu state */}
 			<div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
-				<div className="pt-2 pb-3 space-y-1">
-					<Link
-						href="/blog"
-						className="text-white block pl-3 pr-4 py-2 border-l-4 border-transparent hover:bg-white/5 hover:border-white/50"
-						onClick={() => setIsMenuOpen(false)}
-					>
-						Explore
-					</Link>
-					<Link
-						href="/blog?tag=Technology"
-						className="text-white block pl-3 pr-4 py-2 border-l-4 border-transparent hover:bg-white/5 hover:border-white/50"
-						onClick={() => setIsMenuOpen(false)}
-					>
-						Technology
-					</Link>
-					<Link
-						href="/blog?tag=Design"
-						className="text-white block pl-3 pr-4 py-2 border-l-4 border-transparent hover:bg-white/5 hover:border-white/50"
-						onClick={() => setIsMenuOpen(false)}
-					>
-						Design
-					</Link>
-					<Link
-						href="/blog?tag=Business"
-						className="text-white block pl-3 pr-4 py-2 border-l-4 border-transparent hover:bg-white/5 hover:border-white/50"
-						onClick={() => setIsMenuOpen(false)}
-					>
-						Business
-					</Link>
-					<Link
-						href="/team"
-						className="text-white block pl-3 pr-4 py-2 border-l-4 border-transparent hover:bg-white/5 hover:border-white/50"
-						onClick={() => setIsMenuOpen(false)}
-					>
-						Team
-					</Link>
-				</div>
 				<div className="pt-4 pb-3 border-t border-white/10">
 					{isLoaded && user ? (
 						<div className="space-y-2 px-4"
