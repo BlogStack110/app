@@ -1,14 +1,14 @@
-'use client';
-import Link from 'next/link';
-import { Menu, X, User, LogOut, PlusIcon, Bell, Search } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { authClient, useSession } from '../lib/auth-client';
-import { Button } from './ui/button';
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog';
-import { CardsCreateAccount } from './ui/Signup';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { Input } from './ui/input';
+"use client";
+import Link from "next/link";
+import { Menu, X, User, LogOut, PlusIcon, Bell, Search } from "lucide-react";
+import { useEffect, useState } from "react";
+import { authClient, useSession } from "../lib/auth-client";
+import { Button } from "./ui/button";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { CardsCreateAccount } from "./ui/Signup";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { Input } from "./ui/input";
 export default function PublicNavbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -30,15 +30,33 @@ export default function PublicNavbar() {
 	}, [session]);
 
 	return (
-		<nav className="bg-neutral-900 max-w-8xl self-center border-b py-1 border-white/10 fixed z-10 w-full">
+		<nav className="bg-neutral-900 border-b py-1 border-white/10 sticky top-0 w-full">
 			<div className=" mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between h-16">
 					<div className="flex items-center">
-						<Link href="/" className="">
-							<span className="text-white font-bold text-2xl">BlogStack</span>
+						<Link
+							href="/dashboard"
+							className="flex items-center space-x-3 text-white group"
+						>
+
+
+							<div className="bg-gradient-to-r shadow-blue-300/10 rounded-2xl p-1 from-blue-400/30 to-indigo-400/30 ">
+								<div className="bg-white/5 border border-white/10 backdrop-blur-md backdrop-saturate-150 p-2 rounded-xl shadow-xl shadow-blue-500/70 transition-all duration-300 group-hover:shadow-blue-500/40 group-hover:bg-white/10 group-hover:border-white/20 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-400/10 before:to-indigo-400/10 before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100">
+									<Image
+										width={100}
+										height={100}
+										className="h-6 w-6 relative z-10"
+										src='https://1d6kykqofq.ufs.sh/f/fVvo0hHNtQOL2sdn6AYe0XpifuAcUyr23E9Yw7IWgQsoNjkb'
+										alt="logo"
+									/>
+
+									<div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+								</div>
+							</div><span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-300">
+								BlogStack
+							</span>
 						</Link>
 					</div>
-
 					<div className="relative flex-1 max-w-sm mt-2">
 						<Input
 							type="text"
@@ -48,19 +66,18 @@ export default function PublicNavbar() {
 							className="w-full px-4 py-6 pl-12 rounded-xl border border-white/5
 							text-white placeholder-white/40 focus:outline-none focus:ring-transparent  focus:bg-transparent transition-all"
 						/>
-						<button
-							className="absolute left-4 top-1/2 -translate-y-1/2"
-						>
+						<button className="absolute left-4 top-1/2 -translate-y-1/2">
 							<Search className="w-5 h-5 text-gray-400 dark:text-white/40 -translate-y-1 cursor-pointer" />
 						</button>
-					</div>					<div className="hidden md:ml-6 md:flex md:items-center">
+					</div>{" "}
+					<div className="hidden md:ml-6 md:flex md:items-center">
 						{isLoaded && user ? (
 							<div className="relative flex items-center space-x-4">
-								<div className='h-11 w-12 shadow-neutral-600 shadow-sm bg-neutral-800 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-900 transition-colors cursor-pointer'>
-									<Bell className='h-5 w-5 fill-neutral-500 text-neutral-500' />
+								<div className="h-11 w-12 shadow-neutral-600 shadow-sm bg-neutral-800 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-900 transition-colors cursor-pointer">
+									<Bell className="h-5 w-5 fill-neutral-500 text-neutral-500" />
 								</div>
-								<div className='h-11 w-12 shadow-neutral-600 shadow-sm bg-neutral-800 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-900 transition-colors cursor-pointer'>
-									<PlusIcon className='h-5 w-5 text-neutral-500' />
+								<div className="h-11 w-12 shadow-neutral-600 shadow-sm bg-neutral-800 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-900 transition-colors cursor-pointer">
+									<PlusIcon className="h-5 w-5 text-neutral-500" />
 								</div>
 
 								<button
@@ -73,7 +90,7 @@ export default function PublicNavbar() {
 												height={1000}
 												width={1000}
 												src={user.image.toString()}
-												alt={user.name || 'User'}
+												alt={user.name || "User"}
 												className="w-12 h-11 rounded-md border cursor-pointer border-white/20"
 											/>
 										) : (
@@ -132,18 +149,17 @@ export default function PublicNavbar() {
 			</div>
 
 			{/* Mobile menu, show/hide based on menu state */}
-			<div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+			<div className={`md:hidden ${isMenuOpen ? "block" : "hidden"}`}>
 				<div className="pt-4 pb-3 border-t border-white/10">
 					{isLoaded && user ? (
-						<div className="space-y-2 px-4"
-						>
+						<div className="space-y-2 px-4">
 							<div className="flex items-center space-x-3 mb-3">
 								{user.image ? (
 									<Image
 										height={1000}
 										width={1000}
 										src={user.image.toString()}
-										alt={user.name || 'User'}
+										alt={user.name || "User"}
 										className="w-8 h-8 rounded-full border border-white/20"
 									/>
 								) : (
