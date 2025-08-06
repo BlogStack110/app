@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-
+import { Poppins } from 'next/font/google';
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
 	variable: '--font-geist-sans',
@@ -10,6 +10,12 @@ const geistMono = localFont({
 	src: './fonts/GeistMonoVF.woff',
 	variable: '--font-geist-mono',
 });
+
+const poppins = Poppins({
+	style: 'normal',
+	subsets: ['latin'],
+	weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+})
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -22,9 +28,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" className={poppins.className}>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable}min-h-screen bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-300`}
+				className={`min-h-screen bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-colors duration-300`}
 			>
 				<div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col">
 					{children}
