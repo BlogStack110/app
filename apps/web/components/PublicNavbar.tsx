@@ -30,7 +30,7 @@ export default function PublicNavbar() {
 	}, [session]);
 
 	return (
-		<nav className="bg-neutral-900 border-b py-1 border-white/10 sticky top-0 w-full">
+		<nav className="bg-neutral-900 z-30 border-b py-1 border-white/10 sticky top-0 w-full">
 			<div className=" mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between h-16">
 					<div className="flex items-center">
