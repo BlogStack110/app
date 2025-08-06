@@ -101,6 +101,7 @@ model Post {
   likes        Like[]
   views        View[]
 }
+
 model Bookmark {
   id        String   @id @unique @default(uuid())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -202,18 +203,26 @@ model Friendship {
 }
 
 model Profile {
+  fullName       String?
   id             String   @id @unique @default(uuid())
-  education      String?
-  location       String?
-  bio            String?
+  about          String?
   userId         String   @unique
   user           User     @relation(fields: [userId], references: [id])
   profession     String?
-  organization   String?
   socialLinks    String[]
   pronouns       String?
+  emailVerified  Boolean  @default(false)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   badges         String[]
   doneOnboarding Boolean  @default(false)
+  followers      Int?
+  posts          Int?
+  viesws         Int?
+  likes          Int?
+  following      Int?
+  profilePicture String?
+  coverPicture   String?
+  interests      String[]
+  achievements   String[]
 }
