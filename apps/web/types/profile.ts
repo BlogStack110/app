@@ -10,4 +10,5 @@ export interface Profile {
 	followers: number
 	joinedDate: Date
 	emailVerified: boolean
+	badges?: string[]
 }
