@@ -56,7 +56,7 @@ export default async function Page({ searchParams }: { searchParams: { page?: st
 	const joinDate: Date | undefined = session?.data?.user?.createdAt
 
 	return (
-		<div className="space-y-8">
+		<div className="space-y-8 w-4/5 mx-auto">
 			{/* Hero Section */}
 
 			<Welcome />
