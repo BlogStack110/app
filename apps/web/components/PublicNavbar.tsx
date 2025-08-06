@@ -30,7 +30,7 @@ export default function PublicNavbar() {
 	}, [session]);
 
 	return (
-		<nav className="bg-neutral-900 z-30 border-b py-1 border-white/10 sticky top-0 w-full">
+		<nav className="bg-neutral-900 z-30 border-b py-0 border-white/10 sticky top-0 w-full">
 			<div className=" mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between h-16">
 					<div className="flex items-center">
@@ -41,7 +41,9 @@ export default function PublicNavbar() {
 
 
 							<div className="bg-gradient-to-r shadow-blue-300/10 rounded-2xl p-1 from-blue-400/30 to-indigo-400/30 ">
-								<div className="bg-white/5 border border-white/10 backdrop-blur-md backdrop-saturate-150 p-2 rounded-xl shadow-xl shadow-blue-500/70 transition-all duration-300 group-hover:shadow-blue-500/40 group-hover:bg-white/10 group-hover:border-white/20 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-400/10 before:to-indigo-400/10 before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100">
+								<div className="bg-white/5 border border-white/10 backdrop-blur-md backdrop-saturate-150 p-2 rounded-xl shadow-xl
+									shadow-blue-500/70 transition-all duration-300 group-hover:shadow-blue-500/40 group-hover:bg-white/10 group-hover:border-white/20
+									relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-400/10 before:to-indigo-400/10 before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100">
 									<Image
 										width={100}
 										height={100}
@@ -63,7 +65,7 @@ export default function PublicNavbar() {
 							name="search"
 							placeholder="Search blogs..."
 							defaultValue={""}
-							className="w-full px-4 py-6 pl-12 rounded-xl border border-white/5
+							className="w-full px-4 py-6 pl-12 rounded-xl border-none  inset-shadow-neutral-950 inset-shadow-sm  bg-neutral-900
 							text-white placeholder-white/40 focus:outline-none focus:ring-transparent  focus:bg-transparent transition-all"
 						/>
 						<button className="absolute left-4 top-1/2 -translate-y-1/2">
@@ -73,11 +75,11 @@ export default function PublicNavbar() {
 					<div className="hidden md:ml-6 md:flex md:items-center">
 						{isLoaded && user ? (
 							<div className="relative flex items-center space-x-4">
-								<div className="h-11 w-12 shadow-neutral-600 shadow-sm bg-neutral-800 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-900 transition-colors cursor-pointer">
-									<Bell className="h-5 w-5 fill-neutral-500 text-neutral-500" />
+								<div className="h-9 w-9 shadow-neutral-600 shadow-sm bg-neutral-800 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-900 transition-colors cursor-pointer">
+									<Bell className=" fill-neutral-500 text-neutral-500" />
 								</div>
-								<div className="h-11 w-12 shadow-neutral-600 shadow-sm bg-neutral-800 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-900 transition-colors cursor-pointer">
-									<PlusIcon className="h-5 w-5 text-neutral-500" />
+								<div className="h-9 w-9 shadow-neutral-600 shadow-sm bg-neutral-800 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-900 transition-colors cursor-pointer">
+									<PlusIcon className=" text-neutral-500" />
 								</div>
 
 								<button
@@ -91,7 +93,7 @@ export default function PublicNavbar() {
 												width={1000}
 												src={user.image.toString()}
 												alt={user.name || "User"}
-												className="w-12 h-11 rounded-md border cursor-pointer border-white/20"
+												className="w-9 h-9  rounded-md border cursor-pointer border-white/20"
 											/>
 										) : (
 											<div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center border border-white/20">
