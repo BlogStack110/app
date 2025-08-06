@@ -344,10 +344,10 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 				<div className="flex-1 flex flex-col overflow-hidden">
 					{/* Page Content */}
 					<main
-						className={`flex-1 overflow-y-auto bg-[#0a0a0a] ${!pathname.startsWith("/dashboard/messages") ? "p-6" : ""
+						className={`flex-1 overflow-y-auto bg-[#0a0a0a] ${!pathname.startsWith("/dashboard/messages") ? "p-" : ""
 							}`}
 					>
-						<div className="w-4/5 mx-auto">{children}</div>
+						<div className="">{children}</div>
 					</main>
 				</div>
 			</div>
