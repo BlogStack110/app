@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.11.1",
+    "@radix-ui/react-dialog": "^1.1.11",
     "@repo/ui": "*",
     "@tailwindcss/postcss": "^4.1.4",
     "@tiptap/extension-image": "^2.11.5",
@@ -39,6 +40,7 @@
     "tailwindcss": "^4.1.4",
     "uploadthing": "^7.7.2",
     "uuid": "^11.1.0",
+    "vaul": "^1.1.2",
     "winston": "^3.17.0",
     "zod": "^3.25.67"
   },
