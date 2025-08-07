@@ -1,6 +1,17 @@
 import { FacebookIcon, GithubIcon, LinkedinIcon, MessageSquare, MoreHorizontal, TwitchIcon, TwitterIcon, Verified, Youtube } from "lucide-react"
 import Image from "next/image"
-
+import {
+	Drawer,
+	DrawerClose,
+	DrawerContent,
+	DrawerDescription,
+	DrawerFooter,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/components/ui/drawer"
+import { Button } from "./ui/button";
+import { Profile } from "@/types/profile";
 
 const SocialIcon = ({ link }: { link: string }) => {
 
@@ -93,7 +104,30 @@ export const ProfileCard = ({ props }: { props: Profile }) => {
 						<h4 className="text-xl text-neutral-300 font-semibold">About</h4>
 						<div className="text-md text-neutral-500">
 							{props.about.length > 125 ? props.about.slice(0, 125) + "..." : props.about}
-							<span className="font-semibold text-blue-400 cursor-pointer">Read More</span>
+
+							<Drawer>
+								<DrawerTrigger asChild>
+
+									<span className="font-semibold text-blue-400 cursor-pointer">Read More</span>
+								</DrawerTrigger>
+								<DrawerContent className="border-none rounded-tl-3xl rounded-tr-3xl">
+									<div className="mx-auto w-full flex flex-col justify-between space-y-3 max-w-[1280px] ">
+										<DrawerHeader>
+											<DrawerTitle className="text-neutral-400">{"About " + props.fullName}</DrawerTitle>
+										</DrawerHeader>
+										<div className=" pb-0">
+											<div className="flex text-lg font-semibold text-neutral-400 self-center">
+												{props.about}
+											</div>
+										</div>
+										<DrawerFooter>
+											<DrawerClose asChild>
+												<Button className="w-[200px] self-center" variant="outline">Back</Button>
+											</DrawerClose>
+										</DrawerFooter>
+									</div>
+								</DrawerContent>
+							</Drawer>
 						</div>
 					</div>
 					{/* Right bottom section */}
