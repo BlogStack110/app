@@ -1,0 +1,37 @@
+{
+  "name": "sockerserver",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/index.js",
+    "dev": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "build": "npx prisma generate && tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivaraj110/Blogstack-socketserver.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivaraj110/Blogstack-socketserver/issues"
+  },
+  "homepage": "https://github.com/shivaraj110/Blogstack-socketserver#readme",
+  "description": "",
+  "devDependencies": {
+    "tsc-watch": "^6.2.1",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "@socket.io/redis-adapter": "^8.2.1",
+    "@types/socket.io": "^3.0.1",
+    "@upstash/redis": "^1.34.7",
+    "dotenv": "^16.4.7",
+    "ioredis": "^5.6.0",
+    "prisma": "^6.5.0",
+    "socket.io": "^4.8.1"
+  }
+}
