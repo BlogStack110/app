@@ -18,8 +18,11 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
 
 				/>
 			</div>
-			<div className="flex flex-col items-center mt-4">
+			<div className="flex flex-col transii items-center mt-4">
 				<ProfileCard props={profile} />
+			</div>
+			<div className="flex flex-col items-center fixed bottom-[50%] bg-green-600 h-fit w-7xl">
+
 			</div>
 		</div>
 	)
