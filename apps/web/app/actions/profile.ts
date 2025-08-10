@@ -36,7 +36,7 @@ Expertise spans React/Node.js ecosystems, AWS/Azure cloud platforms, and DevOps 
 		emailVerified: profile?.emailVerified ?? false,
 		followers: 69000,
 		socialLinks: ["https://github.com/shivaraj110", "twitter", "twitch",],
-		badges: ["Grammer Gaurdian", "Beta Tester"]
+		badges: ["Grammer Gaurdian", "Beta Tester", "Developer"]
 	}
 	return userProfile
 }
