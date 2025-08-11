@@ -54,7 +54,7 @@ export const ProfileCard = ({ props }: { props: Profile }) => {
 			initial={{ y: -100 }}
 			className="flex flex-col justify-center items-center h-full min-w-7xl max-w-[1280px] z-50 -translate-y-32 w-full" >
 			<div
-				className="flex flex-col bg-gradient-to-r from-neutral-800/90 to-neutral-900/95 rounded-lg w-7xl  shadow-xl p-4 pb-5 h-fit backdrop-blur-lg">
+				className="flex flex-col bg-gradient-to-r from-neutral-900/85 to-neutral-950/85 rounded-lg w-7xl  shadow-xl p-4 pb-5 h-fit backdrop-blur-xl">
 				{/* Top section */}
 				<div className="flex justify-between transition-all duration-500 ease-in-out">
 
@@ -123,14 +123,14 @@ export const ProfileCard = ({ props }: { props: Profile }) => {
 							</label>
 						</section>					</div>
 					{/* Right bottom section */}
-					<div className="flex col-span-1 justify-end items-end space-x-2">
+					<div className="flex col-span-1  justify-end items-end space-x-2">
 
 						{
 							props.badges?.map((badge, index) => (
-								<Dialog >
+								<Dialog key={index} >
 									<form>
 										<DialogTrigger asChild>
-											<div key={index} className="text-md font-semibold bg-neutral-900 text-neutral-600 size-fit hover:text-blue-500/50 transition-colors duration-500 delay-100 cursor-pointer p-1 px-2 rounded-md inset-shadow-neutral-950">
+											<div key={index} className="text-md font-semibold  bg-yellow-700/15 border border-yellow-700/90 text-neutral-600 size-fit hover:text-blue-500/50 transition-all duration-500 delay-100 cursor-pointer p-1 px-2 rounded-md">
 												{badge}
 											</div>
 										</DialogTrigger>
@@ -141,7 +141,7 @@ export const ProfileCard = ({ props }: { props: Profile }) => {
 													issued {formatDate(new Date().toUTCString())}
 												</DialogDescription>
 											</DialogHeader>
-											<FlaskConical strokeWidth={0.25} className=" size-28 border-none text-yellow-200 animate-pulse animate-collapsible-up fill-yellow-200/10" />
+											<FlaskConical strokeWidth={0.25} className=" size-28 border-none text-yellow-200 animate-pulse fill-yellow-200/10" />
 											<div className="text-center">
 												This writer has been recognized for consistently producing high-quality, error-free content that enhances our community's reading experience
 											</div>
