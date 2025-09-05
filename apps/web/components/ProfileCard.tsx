@@ -60,7 +60,7 @@ export const ProfileCard = ({ props }: { props: Profile }) => {
       initial={{ y: -100 }}
       className="flex flex-col justify-center items-center h-full min-w-7xl max-w-[1280px] z-50 w-full"
     >
-      <div className="flex flex-col bg-gradient-to-r from-neutral-900/85 to-neutral-950/85 rounded-lg w-7xl  shadow-xl p-4 pb-5 h-fit backdrop-blur-xl">
+      <div className="flex flex-col bg-gradient-to-r from-neutral-900/85 to-neutral-950/85 rounded-lg w-7xl  shadow-xl p-6 pb-5 h-fit backdrop-blur-xl">
         {/* Top section */}
         <div className="flex justify-between transition-all duration-500 ease-in-out">
           {/* Left top section*/}
@@ -105,15 +105,15 @@ export const ProfileCard = ({ props }: { props: Profile }) => {
           </div>
           {/* Right top section */}
           <div className="flex justify-center space-x-2">
-            <span className="text-xs bg-neutral-700/40 size-fit text-neutral-200 rounded-md p-2 cursor-pointer">
+            <span className="text-xs bg-neutral-700/40 size-fit text-neutral-100 rounded-md p-2 cursor-pointer">
               <MoreHorizontal className="h-4 w-4 fill-neutral-500" />
             </span>
-            <span className="text-xs bg-neutral-700/40 size-fit text-neutral-200 rounded-md p-2 cursor-pointer ">
+            <button className="follow-button h-fit px-5 py-1.5 bg-neutral-700/40">
               <div className="font-semibold">Message</div>
-            </span>
-            <span className="text-xs bg-blue-500/40 size-fit text-neutral-200 rounded-md p-2 cursor-pointer">
-              <div className="font-semibold">Follow</div>
-            </span>
+            </button>
+            <button className="follow-button bg-gradient-to-r from-blue-400 to-blue-500/70 cursor-pointer h-fit px-5 py-1.5">
+              <span className="font-semibold cursor-pointer">Follow</span>
+            </button>
           </div>
         </div>
         {/* Bottom section */}
