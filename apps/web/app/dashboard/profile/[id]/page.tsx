@@ -22,10 +22,11 @@ export default async function Page({
           className="w-full h-80 object-cover "
         />
       </div>
-      <div className="flex space-y-5  -translate-y-32 flex-col items-center mt-4">
+      <div className="flex space-y-3 top-1/4 absolute flex-col items-center z-50 mt-4">
         <ProfileCard props={profile} />
-
-        <ProfileStats />
+        <div className="h-fit absolute flex flex-col items-center top-52 z-30 ">
+          <ProfileStats />
+        </div>
       </div>
     </div>
   );
