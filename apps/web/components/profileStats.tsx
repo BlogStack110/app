@@ -1,7 +1,8 @@
 "use client";
+import { Stats } from "@/types/profile";
 import { motion } from "motion/react";
 import { useState } from "react";
-export const ProfileStats = (props: {}) => {
+export const ProfileStats = (props: Stats) => {
   const navItems: { title: string }[] = [
     { title: "Overview" },
     { title: "Followers" },

@@ -60,7 +60,7 @@ export const ProfileCard = ({ props }: { props: Profile }) => {
       initial={{ y: -100 }}
       className="flex flex-col justify-center items-center h-full min-w-7xl max-w-[1280px] z-50 w-full"
     >
-      <div className="flex flex-col bg-gradient-to-r from-neutral-900/85 to-neutral-950/85 rounded-lg w-7xl  shadow-xl p-6 pb-5 h-fit backdrop-blur-xl">
+      <div className="flex flex-col bg-gradient-to-r from-neutral-900/85 to-neutral-950/85 rounded-lg w-7xl  shadow-xl p-6 pb-5 h-fit backdrop-blur-lg">
         {/* Top section */}
         <div className="flex justify-between transition-all duration-500 ease-in-out">
           {/* Left top section*/}
