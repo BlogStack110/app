@@ -1,18 +1,27 @@
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const postId = searchParams.get("postId");
   const userId = searchParams.get("userId");
-
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
   if (!postId || !userId) {
     return NextResponse.json(
       { error: "Missing required parameters" },
-      { status: 400 }
+      { status: 400 },
     );
   }
-
+  if (!session?.user?.id) {
+    return NextResponse.json(
+      { error: "Unauthorized - please log in" },
+      { status: 401 },
+    );
+  }
   try {
     // Check if a like exists for this user and post
     const like = await prisma.like.findFirst({
@@ -27,7 +36,7 @@ export async function GET(request: NextRequest) {
     console.error("Error checking like status:", error);
     return NextResponse.json(
       { error: "Error checking like status" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
