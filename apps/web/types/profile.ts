@@ -13,11 +13,16 @@ export interface Profile {
 
 export interface Stats {
   favTopics: string[];
-  badges: string[];
+  badges: {
+    name: string;
+    png: string;
+    issued: string;
+  }[];
   RecentPosts:
     | {
         id: string;
         title: string;
+        tags: string[];
         _count: {
           likes: number;
           views: number;
