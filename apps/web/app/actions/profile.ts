@@ -49,7 +49,10 @@ export const getStats = async (id: string): Promise<Stats> => {
       joinedOn: true,
       emailVerified: true,
       posts: {
-        take: 3,
+        orderBy: {
+          tags: "desc",
+        },
+        take: 6,
         select: {
           id: true,
           title: true,
@@ -80,9 +83,26 @@ export const getStats = async (id: string): Promise<Stats> => {
   });
 
   favTopics = [...new Set(favTopics)];
+  favTopics = favTopics.slice(0, 6);
 
   const userStats: Stats = {
-    badges: ["Grammer Gaurdian", "Beta Tester", "Developer"],
+    badges: [
+      {
+        name: "Detective",
+        png: "https://1d6kykqofq.ufs.sh/f/fVvo0hHNtQOLPUPIkK36X3ZYOLg5R2Sjk4pAcNUD7QqTKiWJ",
+        issued: "SEP 26 2024",
+      },
+      {
+        name: "Developer",
+        png: "https://1d6kykqofq.ufs.sh/f/fVvo0hHNtQOLcEPXse7UaE9SsuJmDGAWw46et5yqpjQXdK3M",
+        issued: "DEC 03 2024",
+      },
+      {
+        name: "Social",
+        png: "https://1d6kykqofq.ufs.sh/f/fVvo0hHNtQOLUTiog7adKWxA692NzyOSQDoXIJbnFPlfitkm",
+        issued: "FEB 18 2025",
+      },
+    ],
     RecentPosts: stats?.posts ?? null,
     following: [
       { userId: "1", email: "shivaraj@gmail.com" },
