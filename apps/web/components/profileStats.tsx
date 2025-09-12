@@ -2,9 +2,7 @@
 import { Stats } from "@/types/profile";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { FavTopics } from "./FavTopics";
-import { RecentBlogs } from "./RecentBlogs";
-import { Badges } from "./Badges";
+import { StatsSection } from "./Stats";
 export const ProfileStats = ({ props }: { props: Stats }) => {
   const navItems: { title: string }[] = [
     { title: "Overview" },
@@ -41,13 +39,7 @@ export const ProfileStats = ({ props }: { props: Stats }) => {
           </div>
         ))}
       </div>
-      <div className="flex pt-5 ">
-        <div className="flex flex-col gap-3 w-3/4">
-          <FavTopics props={props.favTopics} />
-          <RecentBlogs props={props.RecentPosts} />
-        </div>
-        <Badges props={props.badges} />
-      </div>
+      {currentItem === "Overview" && <StatsSection props={props} />}
     </motion.div>
   );
 };
