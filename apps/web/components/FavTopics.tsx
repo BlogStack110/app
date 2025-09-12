@@ -12,7 +12,7 @@ export const FavTopics = ({ props }: { props: Stats["favTopics"] }) => {
           Favorite Topics
         </h3>
       </div>
-      <div className="grid grid-cols-3 gap-3 mt-2 w-full">
+      <div className="grid grid-cols-6 gap-3 mt-2 w-full">
         {props.map((topic, index) => (
           <div
             className="text-sm text-neutral-500 text-center rounded-xl p-2 font-semibold bg-neutral-900"
