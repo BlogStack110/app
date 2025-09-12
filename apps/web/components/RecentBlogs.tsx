@@ -1,9 +1,9 @@
 import { Stats } from "@/types/profile";
-import { ClockFading, Eye, Hash, Heart, View } from "lucide-react";
-
+import { ClockFading, Hash, Heart, View } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 export const RecentBlogs = ({ props }: { props: Stats["RecentPosts"] }) => {
   return (
-    <div className="flex flex-col w-full gap-3 mt-3">
+    <ScrollArea className="flex flex-col w-full gap-3 mt-3 h-[270px]">
       <div className="flex items-center">
         <div className="size-fit rounded-md mr-2 p-2 bg-neutral-800 ">
           <ClockFading className="size-5 fill-neutral-600/60 text-neutral-600" />
@@ -45,6 +45,6 @@ export const RecentBlogs = ({ props }: { props: Stats["RecentPosts"] }) => {
           </div>
         ))}
       </div>
-    </div>
+    </ScrollArea>
   );
 };
