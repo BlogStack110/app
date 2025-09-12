@@ -13,6 +13,7 @@
   "dependencies": {
     "@prisma/client": "^6.11.1",
     "@radix-ui/react-dialog": "^1.1.11",
+    "@radix-ui/react-scroll-area": "^1.2.6",
     "@repo/ui": "*",
     "@tailwindcss/postcss": "^4.1.4",
     "@tiptap/extension-image": "^2.11.5",
