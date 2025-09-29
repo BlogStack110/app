@@ -32,72 +32,54 @@ export default function PublicNavbar() {
   return (
     <nav className="bg-neutral-900 z-30 border-b py-0 border-white/10 sticky top-0 w-full">
       <div className=" mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-10">
           <div className="flex items-center">
             <Link
               href="/dashboard"
               className="flex items-center space-x-3 text-white group"
             >
-              <div className="bg-gradient-to-r shadow-blue-300/10 rounded-2xl p-1 from-blue-400/30 to-indigo-400/30 ">
-                <div
-                  className="bg-white/5 border border-white/10 backdrop-blur-md backdrop-saturate-150 p-2 rounded-xl shadow-xl
-									shadow-blue-500/70 transition-all duration-300 group-hover:shadow-blue-500/40 group-hover:bg-white/10 group-hover:border-white/20
-									relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-400/10 before:to-indigo-400/10 before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100"
-                >
-                  <Image
-                    width={100}
-                    height={100}
-                    className="h-6 w-6 relative z-10"
-                    src="https://1d6kykqofq.ufs.sh/f/fVvo0hHNtQOL2sdn6AYe0XpifuAcUyr23E9Yw7IWgQsoNjkb"
-                    alt="logo"
-                  />
-
-                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-                </div>
-              </div>
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-300">
                 BlogStack
               </span>
             </Link>
           </div>
-          <div className="relative flex-1 max-w-sm mt-2">
+          <div className="relative hidden md:flex flex-1 justify-center top-3 items-center max-w-sm mt-2">
+            <Search className="size-4 text-gray-400 dark:text-white/40 translate-x-6 cursor-pointer" />
             <Input
               type="text"
               name="search"
               placeholder="Search blogs..."
               defaultValue={""}
-              className="w-full px-4 py-6 pl-12 rounded-xl border-none  inset-shadow-neutral-950 inset-shadow-sm  bg-neutral-900
-							text-white placeholder-white/40 focus:outline-none focus:ring-transparent  focus:bg-transparent transition-all"
+              className="w-full   pl-8 rounded-xl border-none  inset-shadow-neutral-950 inset-shadow-sm  bg-neutral-900
+							text-white placeholder-white/40 outline-none focus:border-neutral-950 transition-all"
             />
-            <button className="absolute left-4 top-1/2 -translate-y-1/2">
-              <Search className="w-5 h-5 text-gray-400 dark:text-white/40 -translate-y-1 cursor-pointer" />
-            </button>
           </div>{" "}
           <div className="hidden md:ml-6 md:flex md:items-center">
             {isLoaded && user ? (
               <div className="relative flex items-center space-x-4">
-                <div className="h-9 w-9 shadow-neutral-600 shadow-sm bg-neutral-900 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-950 transition-colors cursor-pointer">
-                  <Bell className=" fill-neutral-500 text-neutral-500" />
+                <div className="shadow-neutral-600 shadow-sm flex p-1 justify-center items-center rounded-md bg-neutral-900 transition-colors cursor-pointer">
+                  <Bell className=" size-5 fill-neutral-500 text-neutral-500" />
                 </div>
-                <div className="h-9 w-9 shadow-neutral-600 shadow-sm bg-neutral-900 flex p-1 px-2 justify-center items-center rounded-md hover:bg-neutral-950 transition-colors cursor-pointer">
-                  <PlusIcon className=" text-neutral-500" />
+
+                <div className="shadow-neutral-600 shadow-sm flex p-1 justify-center items-center rounded-md bg-neutral-900 transition-colors cursor-pointer">
+                  <PlusIcon className=" size-5 text-neutral-500" />
                 </div>
 
                 <button
                   onClick={toggleProfile}
                   className="flex items-center space-x-3 text-white focus:outline-none"
                 >
-                  <div className="flex items-center space-x-3 border border-neutral-500 rounded-md">
+                  <div className="flex items-center space-x-3 border  border-neutral-500 rounded-md">
                     {user.image ? (
                       <Image
                         height={1000}
                         width={1000}
                         src={user.image.toString()}
                         alt={user.name || "User"}
-                        className="w-9 h-9  rounded-md border cursor-pointer border-white/20"
+                        className="size-7 rounded-md border cursor-pointer border-white/20"
                       />
                     ) : (
-                      <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center border border-white/20">
+                      <div className="size-5 rounded-full bg-blue-600 flex items-center justify-center border border-white/20">
                         <User className="w-4 h-4 text-white" />
                       </div>
                     )}
