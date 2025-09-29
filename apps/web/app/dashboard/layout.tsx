@@ -263,7 +263,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <div className="flex-1 overflow-y-auto py-6 px-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10 hover:scrollbar-thumb-white/20">
               {/* User Info */}
               <div
-                className={` ${!isCollapsed && "relative flex items-center space-x-4 mb-8 px-2 py-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/8 hover:border-white/10 transition-all duration-300 group overflow-hidden cursor-pointer"}`}
+                className={` ${!isCollapsed && "relative flex items-center space-x-1 mb-8 px-1 py-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/8 hover:border-white/10 transition-all duration-300 group overflow-hidden cursor-pointer"}`}
               >
                 <UserButton />
                 {!isCollapsed && (
